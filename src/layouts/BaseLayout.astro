@@ -1,7 +1,6 @@
 ---
 import '../styles/global.css';
 import PlatformProvider from '@/components/PlatformProvider';
-import PlatformModal from '@/components/PlatformModal';
 
 interface Props {
   title?: string;
@@ -34,7 +33,6 @@ const {
     <body class="min-h-screen bg-zinc-950 text-zinc-50 overflow-x-hidden">
     <PlatformProvider>
       <slot />
-      <PlatformModal client:load />
     </PlatformProvider>
   </body>
 </html>

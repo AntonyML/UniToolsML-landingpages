@@ -6,15 +6,8 @@ export default function Hero() {
   function CTA() {
     return (
       <div className="mt-10 flex flex-col sm:flex-row items-center gap-3 animate-fade-up" style={{ animationDelay: '300ms' }}>
-        <Button
-          variant="glow"
-          size="lg"
-          onClick={() => {
-            if (typeof window !== 'undefined') window.dispatchEvent(new CustomEvent('open-platform-modal'));
-          }}
-        >
-          Obtener Acceso Anticipado
-          <ArrowRight className="w-4 h-4" />
+        <Button variant="glow" size="lg" asChild>
+          <a href="#stack">Obtener Acceso Anticipado<ArrowRight className="w-4 h-4" /></a>
         </Button>
         <Button variant="outline" size="lg" asChild>
           <a href="#features">Ver Herramientas</a>

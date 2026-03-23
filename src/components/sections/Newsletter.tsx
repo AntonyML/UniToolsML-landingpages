@@ -22,7 +22,7 @@ export default function Newsletter({ platform = null }: Props) {
   const [email, setEmail] = useState('');
   const [state, setState] = useState<State>('idle');
   const [touched, setTouched] = useState(false);
-  const [updates, setUpdates] = useState(false);
+  const [updates, setUpdates] = useState(true);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const isValid = validateEmail(email);
