@@ -19,6 +19,7 @@ interface Props {
 }
 
 export default function Newsletter({ platform = null }: Props) {
+  const API_URL = 'https://unitools-landing-api.antony-mongelopez.workers.dev';
   const [email, setEmail] = useState('');
   const [state, setState] = useState<State>('idle');
   const [touched, setTouched] = useState(false);
@@ -37,10 +38,11 @@ export default function Newsletter({ platform = null }: Props) {
     setState('loading');
 
     try {
-      const res = await fetch('https://tu-worker.com/register', {
+      const platformToSend = platform ?? (typeof navigator !== 'undefined' && /android/.test(navigator.userAgent.toLowerCase()) ? 'android' : 'windows');
+      const res = await fetch(`${API_URL}/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, platform, updates }),
+        body: JSON.stringify({ email, platform: platformToSend, updates }),
       });
 
       if (!res.ok) throw new Error(`Server returned ${res.status}`);
