@@ -11,7 +11,7 @@ const faqs = [
   },
   {
     q: 'En que plataformas esta disponible?',
-    a: 'Windows 10/11 esta disponible para descarga directa desde esta web. Android esta en desarrollo activo — podras descargar el APK directo o conseguirlo via Play Store (proximamente). macOS y Linux estan en el roadmap pero sin fecha confirmada.',
+    a: 'Windows 10/11 esta disponible para descarga directa desde esta web. Android esta en desarrollo activo — podras descargar el APK directo o conseguirlo via Play Store . macOS y Linux estan  sin fecha confirmada.',
   },
   {
     q: 'Como funciona el pago? Aceptan SINPE?',

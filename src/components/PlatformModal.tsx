@@ -35,7 +35,7 @@ export default function PlatformModal() {
           <>
             <DialogHeader>
               <h3 className="text-lg font-semibold text-zinc-100">Selecciona tu plataforma</h3>
-              <p className="text-sm text-zinc-400">Elige la plataforma para obtener la descarga y el flujo apropiado.</p>
+              <p className="text-sm text-zinc-400">Elige la plataforma para obtener la descarga.</p>
             </DialogHeader>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">

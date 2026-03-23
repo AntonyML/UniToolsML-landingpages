@@ -58,7 +58,7 @@ export default function Navbar() {
         {/* CTA */}
         <div className="hidden md:flex items-center gap-3">
           <Button variant="glow" size="sm" asChild>
-            <a href="#newsletter">
+            <a href="#stack">
               <Zap className="w-3.5 h-3.5" />
               Beta Access
             </a>
@@ -95,7 +95,7 @@ export default function Navbar() {
           ))}
           <div className="pt-2 border-t border-zinc-800 mt-1">
             <Button variant="glow" size="sm" className="w-full" asChild>
-              <a href="#newsletter">
+              <a href="#stack">
                 <Zap className="w-3.5 h-3.5" />
                 Beta Access
               </a>
