@@ -7,10 +7,10 @@ export default function Hero() {
     return (
       <div className="mt-10 flex flex-col sm:flex-row items-center gap-3 animate-fade-up" style={{ animationDelay: '300ms' }}>
         <Button variant="glow" size="lg" asChild>
-          <a href="#stack">Obtener Acceso Anticipado<ArrowRight className="w-4 h-4" /></a>
+          <a href="/#stack">Obtener Acceso Anticipado<ArrowRight className="w-4 h-4" /></a>
         </Button>
         <Button variant="outline" size="lg" asChild>
-          <a href="#features">Ver Herramientas</a>
+          <a href="/#features">Ver Herramientas</a>
         </Button>
       </div>
     );

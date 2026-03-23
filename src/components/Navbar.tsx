@@ -6,9 +6,9 @@ import { Menu, X, Zap } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const links = [
-  { label: 'Características', href: '#features' },
-  { label: 'Stack', href: '#stack' },
-  { label: 'FAQ', href: '#faq' },
+  { label: 'Características', href: '/#features' },
+  { label: 'Stack', href: '/#stack' },
+  { label: 'FAQ', href: '/#faq' },
 ];
 
 export default function Navbar() {
@@ -46,7 +46,7 @@ export default function Navbar() {
           {links.map((l) => (
             <li key={l.href}>
               <a
-                href={l.href}
+                  href={l.href}
                 className="px-3 py-2 text-sm text-zinc-400 hover:text-zinc-100 transition-colors rounded-md hover:bg-zinc-800/60"
               >
                 {l.label}
@@ -58,7 +58,7 @@ export default function Navbar() {
         {/* CTA */}
         <div className="hidden md:flex items-center gap-3">
           <Button variant="glow" size="sm" asChild>
-            <a href="#stack">
+            <a href="/#stack">
               <Zap className="w-3.5 h-3.5" />
               Beta Access
             </a>
@@ -94,8 +94,8 @@ export default function Navbar() {
             </a>
           ))}
           <div className="pt-2 border-t border-zinc-800 mt-1">
-            <Button variant="glow" size="sm" className="w-full" asChild>
-              <a href="#stack">
+              <Button variant="glow" size="sm" className="w-full" asChild>
+              <a href="/#stack">
                 <Zap className="w-3.5 h-3.5" />
                 Beta Access
               </a>
