@@ -8,14 +8,22 @@ import { cn } from '@/lib/utils';
 
 type State = 'idle' | 'loading' | 'success' | 'error';
 
+export type Platform = 'windows' | 'android' | 'play' | null;
+
 function validateEmail(email: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
-export default function Newsletter() {
+interface Props {
+  platform?: Platform;
+}
+
+export default function Newsletter({ platform = null }: Props) {
   const [email, setEmail] = useState('');
   const [state, setState] = useState<State>('idle');
   const [touched, setTouched] = useState(false);
+  const [updates, setUpdates] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const isValid = validateEmail(email);
   const showError = touched && email.length > 0 && !isValid;
@@ -23,12 +31,36 @@ export default function Newsletter() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setTouched(true);
+    setErrorMessage(null);
     if (!isValid) return;
 
     setState('loading');
-    // Simulate API call
-    await new Promise((r) => setTimeout(r, 1600));
-    setState('success');
+
+    try {
+      const res = await fetch('https://tu-worker.com/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, platform, updates }),
+      });
+
+      if (!res.ok) throw new Error(`Server returned ${res.status}`);
+      const data = await res.json();
+      const downloadUrl = data?.downloadUrl;
+      if (downloadUrl) {
+        // start download
+        const a = document.createElement('a');
+        a.href = downloadUrl;
+        a.download = '';
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+      }
+
+      setState('success');
+    } catch (err: any) {
+      setErrorMessage(err?.message || 'Error desconocido');
+      setState('error');
+    }
   };
 
   return (
@@ -104,6 +136,15 @@ export default function Newsletter() {
                 )}
               </Button>
             </div>
+
+            <div className="mt-3 max-w-md mx-auto text-sm text-zinc-400 flex items-center gap-2">
+              <input id="updates" type="checkbox" checked={updates} onChange={(e) => setUpdates(e.target.checked)} className="w-4 h-4 rounded-md" />
+              <label htmlFor="updates">Quiero recibir actualizaciones</label>
+            </div>
+
+            {state === 'error' && errorMessage && (
+              <p className="mt-3 text-sm text-red-400 text-center">{errorMessage}</p>
+            )}
 
             <p className="mt-4 flex items-center justify-center gap-1.5 text-xs text-zinc-600">
               <Lock className="w-3 h-3" />

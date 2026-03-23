@@ -1,7 +1,23 @@
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Terminal, ShieldCheck } from 'lucide-react';
+import { usePlatform } from '@/components/PlatformProvider';
 
 export default function Hero() {
+  function CTA() {
+    const { setModalOpen } = usePlatform();
+    return (
+      <div className="mt-10 flex flex-col sm:flex-row items-center gap-3 animate-fade-up" style={{ animationDelay: '300ms' }}>
+        <Button variant="glow" size="lg" onClick={() => setModalOpen(true)}>
+          Obtener Acceso Anticipado
+          <ArrowRight className="w-4 h-4" />
+        </Button>
+        <Button variant="outline" size="lg" asChild>
+          <a href="#features">Ver Herramientas</a>
+        </Button>
+      </div>
+    );
+  }
+
   return (
     <section className="relative isolate min-h-screen flex flex-col items-center justify-center pt-24 pb-20 px-4 overflow-hidden">
       {/* Background layers */}
@@ -47,20 +63,7 @@ export default function Hero() {
       </p>
 
       {/* CTAs */}
-      <div
-        className="mt-10 flex flex-col sm:flex-row items-center gap-3 animate-fade-up"
-        style={{ animationDelay: '300ms' }}
-      >
-        <Button variant="glow" size="lg" asChild>
-          <a href="#newsletter">
-            Obtener Acceso Anticipado
-            <ArrowRight className="w-4 h-4" />
-          </a>
-        </Button>
-        <Button variant="outline" size="lg" asChild>
-          <a href="#features">Ver Herramientas</a>
-        </Button>
-      </div>
+      <CTA />
 
       {/* Trust signals */}
       <div
