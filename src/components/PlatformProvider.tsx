@@ -1,4 +1,5 @@
-import React, { createContext, useContext, useState } from 'react';
+import * as React from 'react';
+
 
 export type Platform = 'windows' | 'android' | 'play';
 
@@ -9,11 +10,11 @@ interface PlatformContextValue {
   setModalOpen: (v: boolean) => void;
 }
 
-const PlatformContext = createContext<PlatformContextValue | null>(null);
+const PlatformContext = React.createContext<PlatformContextValue | null>(null);
 
 export function PlatformProvider({ children }: { children: React.ReactNode }) {
-  const [platform, setPlatform] = useState<Platform | null>(null);
-  const [modalOpen, setModalOpen] = useState(false);
+  const [platform, setPlatform] = React.useState<Platform | null>(null);
+  const [modalOpen, setModalOpen] = React.useState(false);
 
   return (
     <PlatformContext.Provider value={{ platform, setPlatform, modalOpen, setModalOpen }}>
@@ -23,7 +24,7 @@ export function PlatformProvider({ children }: { children: React.ReactNode }) {
 }
 
 export function usePlatform() {
-  const ctx = useContext(PlatformContext);
+  const ctx = React.useContext(PlatformContext);
   if (!ctx) throw new Error('usePlatform must be used within PlatformProvider');
   return ctx;
 }

@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import * as React from 'react';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogFooter } from '@/components/ui/dialog';
-import { usePlatform, type Platform } from './PlatformProvider';
+import type { Platform } from './PlatformProvider';
 import Newsletter from '@/components/sections/Newsletter';
 
 const OPTIONS: { id: Platform; label: string; subtitle: string; disabled?: boolean }[] = [
@@ -11,13 +11,20 @@ const OPTIONS: { id: Platform; label: string; subtitle: string; disabled?: boole
 ];
 
 export default function PlatformModal() {
-  const { modalOpen, setModalOpen, setPlatform } = usePlatform();
-  const [selected, setSelected] = useState<Platform | null>(null);
-  const [step, setStep] = useState<'select' | 'form'>('select');
+  const [modalOpen, setModalOpen] = React.useState(false);
+  const [selected, setSelected] = React.useState<Platform | null>(null);
+  const [step, setStep] = React.useState<'select' | 'form'>('select');
+
+  React.useEffect(() => {
+    function handler() {
+      setModalOpen(true);
+    }
+    window.addEventListener('open-platform-modal', handler as EventListener);
+    return () => window.removeEventListener('open-platform-modal', handler as EventListener);
+  }, []);
 
   function onContinue() {
     if (!selected) return;
-    setPlatform(selected);
     setStep('form');
   }
 
@@ -65,7 +72,7 @@ export default function PlatformModal() {
             <Newsletter platform={selected} />
 
             <DialogFooter>
-              <Button variant="outline" size="sm" onClick={() => { setStep('select'); setPlatform(null); }}>Cambiar plataforma</Button>
+              <Button variant="outline" size="sm" onClick={() => { setStep('select'); setSelected(null); }}>Cambiar plataforma</Button>
               <Button variant="ghost" size="sm" onClick={() => setModalOpen(false)}>Cerrar</Button>
             </DialogFooter>
           </>
