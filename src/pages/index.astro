@@ -1,0 +1,25 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Navbar from '@/components/Navbar';
+import Hero from '@/components/sections/Hero';
+import Features from '@/components/sections/Features';
+import TechStack from '@/components/sections/TechStack';
+import Newsletter from '@/components/sections/Newsletter';
+import FAQ from '@/components/sections/FAQ';
+import Footer from '@/components/sections/Footer';
+---
+
+<BaseLayout
+  title="UniToolsML — Suite de productividad para estudiantes universitarios"
+  description="Mas de 40 herramientas de PDF, citas academicas, IA generativa y organizacion. Funciona 100% offline. Windows y Android. Hecho en Costa Rica."
+>
+  <Navbar client:load />
+  <main>
+    <Hero client:load />
+    <Features client:visible />
+    <TechStack client:visible />
+    <Newsletter client:visible />
+    <FAQ client:visible />
+  </main>
+  <Footer client:visible />
+</BaseLayout>
