@@ -122,8 +122,8 @@ export default function Newsletter({ platform: initialPlatform }: { platform?: P
         setFeedbackMessage('No se pudo enviar el correo, pero puedes descargar desde el enlace.');
         setFeedbackType('warning');
       } else {
-        setFeedbackMessage('Descarga lista. El correo no está configurado.');
-        setFeedbackType('info');
+        setFeedbackMessage('¡Listo! Tu descarga comenzará en un momento.');
+        setFeedbackType('success');
       }
 
       // detener loading antes de iniciar la descarga
