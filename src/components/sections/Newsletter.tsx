@@ -33,6 +33,8 @@ export default function Newsletter({ platform: initialPlatform }: { platform?: P
   const [updates, setUpdates] = useState(false);
   const [state, setState] = useState<State>('idle');
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [feedbackMessage, setFeedbackMessage] = useState<string | null>(null);
+  const [feedbackType, setFeedbackType] = useState<'info' | 'success' | 'warning' | 'error' | null>(null);
   const [platform, setPlatform] = useState<Platform | null>(initialPlatform ?? null);
   const [visible, setVisible] = useState<boolean>(false);
   const [touched, setTouched] = useState(false);
@@ -56,6 +58,8 @@ export default function Newsletter({ platform: initialPlatform }: { platform?: P
     if (e) e.preventDefault();
     setTouched(true);
     setErrorMessage(null);
+    setFeedbackMessage(null);
+    setFeedbackType(null);
 
     if (!validateEmail(email)) {
       setErrorMessage('Ingresa un email válido');
@@ -100,14 +104,29 @@ export default function Newsletter({ platform: initialPlatform }: { platform?: P
       }
 
       const data = await res.json();
+      const success = data?.success;
+      const emailStatus = data?.emailStatus;
       const downloadUrl = data?.downloadUrl;
-      if (!downloadUrl) {
+
+      if (!success || !downloadUrl) {
         setErrorMessage('Respuesta inválida del servidor');
         setState('error');
         return;
       }
 
-      // Success: stop loading so UI is not stuck, then navigate to download URL
+      // Mostrar feedback según el estado del envío de email
+      if (emailStatus === 'sent') {
+        setFeedbackMessage('Correo enviado. Revisa tu bandeja.');
+        setFeedbackType('success');
+      } else if (emailStatus === 'failed') {
+        setFeedbackMessage('No se pudo enviar el correo, pero puedes descargar desde el enlace.');
+        setFeedbackType('warning');
+      } else {
+        setFeedbackMessage('Descarga lista. El correo no está configurado.');
+        setFeedbackType('info');
+      }
+
+      // detener loading antes de iniciar la descarga
       setState('idle');
       window.location.href = downloadUrl;
     } catch (err: any) {
@@ -147,6 +166,11 @@ export default function Newsletter({ platform: initialPlatform }: { platform?: P
           </div>
 
           {errorMessage && <p className="text-sm text-red-400 text-left">{errorMessage}</p>}
+          {!errorMessage && feedbackMessage && (
+            <p className={`text-sm text-left ${
+              feedbackType === 'success' ? 'text-green-500' : feedbackType === 'warning' ? 'text-yellow-500' : 'text-blue-500'
+            }`}>{feedbackMessage}</p>
+          )}
 
           <Button type="submit" disabled={state === 'loading'} className="h-11 flex items-center justify-center gap-2">
             {state === 'loading' ? (
