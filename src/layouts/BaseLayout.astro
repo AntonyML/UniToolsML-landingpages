@@ -11,6 +11,7 @@ const {
   title = 'UniToolsML — La Suite del Estudiante Moderno',
   description = 'Mas de 20 herramientas de procesamiento de PDF, IA generativa y organizacion. Construido con Rust para velocidad extrema, 100% offline.',
 } = Astro.props;
+const PUBLIC_API_URL = import.meta.env.PUBLIC_API_URL ?? '';
 ---
 
 <!doctype html>
@@ -29,6 +30,7 @@ const {
       rel="stylesheet"
     />
     <title>{title}</title>
+    <script>window.__PUBLIC_API_URL = {JSON.stringify(PUBLIC_API_URL)};</script>
   </head>
     <body class="min-h-screen bg-zinc-950 text-zinc-50 overflow-x-hidden">
     <PlatformProvider>

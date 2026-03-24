@@ -25,7 +25,10 @@ function validateEmail(email: string) {
 }
 
 export default function Newsletter({ platform: initialPlatform }: { platform?: Platform }) {
-  const API_URL = import.meta.env.PUBLIC_API_URL as string;
+  const envAPI = import.meta.env.PUBLIC_API_URL as string | undefined;
+  // allow runtime override if you inject a global (useful for some deployments)
+  const runtimeAPI = typeof window !== 'undefined' ? (window as any).__PUBLIC_API_URL : undefined;
+  const API_URL_RAW = envAPI ?? runtimeAPI ?? '';
   const [email, setEmail] = useState('');
   const [updates, setUpdates] = useState(false);
   const [state, setState] = useState<State>('idle');
@@ -67,9 +70,17 @@ export default function Newsletter({ platform: initialPlatform }: { platform?: P
     setState('loading');
 
     try {
-      if (!API_URL) throw new Error('API URL no configurada');
+      if (!API_URL_RAW) {
+        setErrorMessage('El servicio de descargas no está disponible. Intenta de nuevo más tarde.');
+        setState('error');
+        return;
+      }
 
-      const res = await fetch(`${API_URL}/join`, {
+      // Normalize API URL: accept either base (https://host) or with trailing /join
+      const base = API_URL_RAW.replace(/\/join\/?$/i, '').replace(/\/$/, '');
+      const endpoint = `${base}/join`;
+
+      const res = await fetch(endpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, platform: platformToSend, updates, website }),
@@ -99,7 +110,7 @@ export default function Newsletter({ platform: initialPlatform }: { platform?: P
       // Success: navigate to download URL
       window.location.href = downloadUrl;
     } catch (err: any) {
-      setErrorMessage(err?.message ?? 'Error de red');
+      setErrorMessage(err?.message ?? 'Ocurrió un error de red. Revisa tu conexión e intenta de nuevo.');
       setState('error');
     }
   };
