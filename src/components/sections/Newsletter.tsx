@@ -76,9 +76,9 @@ export default function Newsletter({ platform: initialPlatform }: { platform?: P
         return;
       }
 
-      // Normalize API URL: accept either base (https://host) or with trailing /join
-      const base = API_URL_RAW.replace(/\/join\/?$/i, '').replace(/\/$/, '');
-      const endpoint = `${base}/join`;
+      // Ensure endpoint ends with /join
+      const base = API_URL_RAW.replace(/\/$/, '');
+      const endpoint = base.match(/\/join$/i) ? base : `${base}/join`;
 
       const res = await fetch(endpoint, {
         method: 'POST',
@@ -107,7 +107,8 @@ export default function Newsletter({ platform: initialPlatform }: { platform?: P
         return;
       }
 
-      // Success: navigate to download URL
+      // Success: stop loading so UI is not stuck, then navigate to download URL
+      setState('idle');
       window.location.href = downloadUrl;
     } catch (err: any) {
       setErrorMessage(err?.message ?? 'Ocurrió un error de red. Revisa tu conexión e intenta de nuevo.');
