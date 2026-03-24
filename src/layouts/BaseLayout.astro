@@ -30,7 +30,9 @@ const PUBLIC_API_URL = import.meta.env.PUBLIC_API_URL ?? '';
       rel="stylesheet"
     />
     <title>{title}</title>
-    <script>window.__PUBLIC_API_URL = {JSON.stringify(PUBLIC_API_URL)};</script>
+    <script is:inline define:vars={{ PUBLIC_API_URL }}>
+      window.__PUBLIC_API_URL = PUBLIC_API_URL;
+    </script>
   </head>
     <body class="min-h-screen bg-zinc-950 text-zinc-50 overflow-x-hidden">
     <PlatformProvider>
