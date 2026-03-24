@@ -1,13 +1,12 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { CheckCircle, Loader, ArrowRight, Lock, BellRing } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 type State = 'idle' | 'loading' | 'success' | 'error';
-
 export type Platform = 'windows' | 'android' | 'play' | null;
 
 function validateEmail(email: string) {
@@ -18,13 +17,37 @@ interface Props {
   platform?: Platform;
 }
 
-export default function Newsletter({ platform = null }: Props) {
-  const API_URL = 'https://unitools-landing-api.antony-mongelopez.workers.dev';
+export default function Newsletter({ platform: initialPlatform = null }: Props) {
+  const API_URL = 'https://unitoolsmllandingapi.tonyml.com';
   const [email, setEmail] = useState('');
   const [state, setState] = useState<State>('idle');
   const [touched, setTouched] = useState(false);
   const [updates, setUpdates] = useState(true);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [platform, setPlatform] = useState<Platform>(initialPlatform);
+  const [visible, setVisible] = useState<boolean>(!!initialPlatform);
+
+  useEffect(() => {
+    // If mounted on a platform page and the hash requests the form, infer platform and show
+    if (typeof window === 'undefined') return;
+    const hash = window.location.hash;
+    if (!visible && hash === '#newsletter') {
+      // Infer platform from pathname when not provided
+      const path = window.location.pathname.toLowerCase();
+      if (path.includes('/windows')) setPlatform('windows');
+      else if (path.includes('/android')) setPlatform('android');
+      else if (path.includes('/play')) setPlatform('play');
+      setVisible(true);
+    }
+  }, [visible]);
+
+  useEffect(() => {
+    // keep platform in sync if prop changes externally
+    if (initialPlatform) {
+      setPlatform(initialPlatform);
+      setVisible(true);
+    }
+  }, [initialPlatform]);
 
   const isValid = validateEmail(email);
   const showError = touched && email.length > 0 && !isValid;
@@ -49,7 +72,6 @@ export default function Newsletter({ platform = null }: Props) {
       const data = await res.json();
       const downloadUrl = data?.downloadUrl;
       if (downloadUrl) {
-        // start download
         const a = document.createElement('a');
         a.href = downloadUrl;
         a.download = '';
@@ -65,6 +87,8 @@ export default function Newsletter({ platform = null }: Props) {
     }
   };
 
+  if (!visible) return null;
+
   return (
     <section id="newsletter" className="relative py-28 px-4">
       <div className="absolute inset-0 -z-10 bg-radial-glow opacity-60" />
@@ -77,7 +101,7 @@ export default function Newsletter({ platform = null }: Props) {
         </div>
 
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-gradient mb-4">
-          Se el primero en probarlo.
+          Sé el primero en probarlo.
         </h2>
 
         <p className="text-zinc-400 text-base leading-relaxed mb-10 max-w-lg mx-auto">
