@@ -5,6 +5,8 @@ import Hero from '@/components/sections/Hero';
 import Features from '@/components/sections/Features';
 import TechStack from '@/components/sections/TechStack';
 import Newsletter from '@/components/sections/Newsletter';
+import FreeValue from '@/components/sections/FreeValue';
+import Pricing from '@/components/sections/Pricing';
 import FAQ from '@/components/sections/FAQ';
 import Footer from '@/components/sections/Footer';
 ---
@@ -17,8 +19,9 @@ import Footer from '@/components/sections/Footer';
   <main>
     <Hero client:load />
     <Features client:visible />
+    <FreeValue client:visible />
+    <Pricing client:visible />
     <TechStack client:visible />
-    
     <FAQ client:visible />
   </main>
   <Footer client:visible />

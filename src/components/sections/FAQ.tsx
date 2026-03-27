@@ -7,7 +7,7 @@ import { cn } from '@/lib/utils';
 const faqs = [
   {
     q: 'UniToolsML requiere conexion a internet?',
-    a: 'No para las herramientas gratuitas. Todo el procesamiento de PDFs, citas, flashcards, Pomodoro y notas ocurre localmente en tu dispositivo. La conectividad solo se usa si decides conectar una API de IA externa (OpenAI, Anthropic, etc.) en las herramientas Premium.',
+    a: 'No para las herramientas gratuitas. Todo el procesamiento de PDFs, citas, flashcards, Pomodoro y notas ocurre localmente en tu dispositivo. La conectividad solo se usa si decides  IA en las herramientas Premium.',
   },
   {
     q: 'En que plataformas esta disponible?',

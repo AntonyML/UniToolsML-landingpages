@@ -117,7 +117,7 @@ export default function Features() {
             Todo en una sola app, sin conexión a internet
           </h2>
           <p className="mt-2 text-sm text-zinc-400 max-w-xl mx-auto leading-relaxed">
-            Diseñado para flujos de trabajo académicos reales. Las herramientas gratuitas funcionan sin cuenta. La IA generativa requiere tu propia API key o un plan Premium.
+            Diseñado para flujos de trabajo académicos reales. Las herramientas gratuitas funcionan sin cuenta. La IA generativa requiere un plan.
           </p>
         </div>
 

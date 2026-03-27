@@ -7,7 +7,6 @@ const footerLinks = [
       { label: 'Caracteristicas', href: '#features' },
       { label: 'Distribucion', href: '#stack' },
       { label: 'FAQ', href: '#faq' },
-      { label: 'Acceso Anticipado', href: '#newsletter' },
     ],
   },
   {
@@ -29,19 +28,19 @@ export default function Footer() {
           {/* Brand */}
           <div className="lg:col-span-2">
             <div className="flex items-center gap-2.5 mb-4">
-              <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-7 h-7">
-                <rect x="2" y="2" width="12" height="12" rx="2.5" fill="#6366f1" />
-                <rect x="18" y="2" width="12" height="12" rx="2.5" fill="#818cf8" opacity="0.7" />
-                <rect x="2" y="18" width="12" height="12" rx="2.5" fill="#818cf8" opacity="0.7" />
-                <rect x="18" y="18" width="12" height="12" rx="2.5" fill="#6366f1" />
-                <rect x="13" y="13" width="6" height="6" rx="1" fill="#e0e7ff" opacity="0.9" />
-              </svg>
+              <img
+                src="/icono.ico"
+                alt="UniToolsML logo"
+                width="28"
+                height="28"
+                className="w-7 h-7 rounded-md object-cover"
+              />
               <span className="text-sm font-semibold text-zinc-100">
                 UniTools<span className="text-indigo-400">ML</span>
               </span>
             </div>
             <p className="text-sm text-zinc-500 leading-relaxed max-w-xs">
-              Suite de productividad para estudiantes universitarios. Mas de 40 herramientas. Construida con Rust. Funciona offline. Hecha en Costa Rica.
+              Suite de productividad para estudiantes universitarios. Mas de 40 herramientas. Construida con Rust. Funciona offline. Hecha por un Tico 🇨🇷.
             </p>
             <p className="mt-3 text-xs text-zinc-600">
               Pagos: SINPE Movil + PayPal (escritorio y APK)
@@ -92,7 +91,7 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="pt-6 border-t border-zinc-800 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-xs text-zinc-600">
-            &copy; {year} UniToolsML. Todos los derechos reservados. Hecho con precision en Costa Rica.
+            &copy; {year} UniToolsML. Todos los derechos reservados.
           </p>
           <div className="flex items-center gap-2">
             <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
