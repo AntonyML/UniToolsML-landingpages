@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 
-export type Platform = 'windows' | 'android' | 'play';
+export type Platform = 'windows' | 'android' | 'apple';
 
 interface PlatformContextValue {
   platform: Platform | null;

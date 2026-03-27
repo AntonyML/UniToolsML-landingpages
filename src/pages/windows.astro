@@ -15,15 +15,13 @@ import { ArrowRight, ShieldCheck, Cpu, Wifi, Monitor } from 'lucide-react';
   <Navbar client:load />
   <main>
 
-    <!-- Hero de plataforma -->
     <section class="relative isolate min-h-[70vh] flex flex-col items-center justify-center pt-28 pb-16 px-4 overflow-hidden">
       <div class="absolute inset-0 -z-10 bg-radial-glow opacity-70" />
       <div class="absolute inset-0 -z-10 bg-grid-zinc bg-grid opacity-20" />
       <div aria-hidden class="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[400px] rounded-full bg-indigo-600/10 blur-[100px] -z-10" />
 
-      <!-- Platform badge -->
       <div class="mb-8 flex items-center gap-2 px-3 py-1.5 rounded-full border border-indigo-500/30 bg-indigo-500/10 text-indigo-300 text-xs font-medium">
-        <Monitor class="w-3.5 h-3.5" />
+        <Monitor className="w-3.5 h-3.5" />
         UniToolsML para Windows
       </div>
 
@@ -35,13 +33,12 @@ import { ArrowRight, ShieldCheck, Cpu, Wifi, Monitor } from 'lucide-react';
         <span class="text-zinc-200 font-medium"> 100% offline</span> en Windows 10 y 11.
       </p>
 
-      <!-- CTA principal -->
       <div class="flex flex-col sm:flex-row items-center gap-3 mb-10">
         <a
           href="#newsletter"
           class="inline-flex items-center gap-2 px-6 py-3 rounded-md bg-indigo-600 text-white text-sm font-medium hover:bg-indigo-500 transition-colors shadow-[0_0_30px_-8px_rgba(99,102,241,0.5)]"
         >
-          <ArrowRight class="w-4 h-4" />
+          <ArrowRight className="w-4 h-4" />
           Solicitar acceso — Windows
         </a>
         <a href="/" class="text-sm text-zinc-500 hover:text-zinc-300 transition-colors">
@@ -49,7 +46,6 @@ import { ArrowRight, ShieldCheck, Cpu, Wifi, Monitor } from 'lucide-react';
         </a>
       </div>
 
-      <!-- Feature pills -->
       <div class="flex flex-wrap justify-center gap-2">
         {[
           { icon: ShieldCheck, label: 'Sin cuenta requerida' },
@@ -57,14 +53,13 @@ import { ArrowRight, ShieldCheck, Cpu, Wifi, Monitor } from 'lucide-react';
           { icon: Cpu,         label: 'Motor Rust nativo' },
         ].map(({ icon: Icon, label }) => (
           <span class="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-zinc-800 bg-zinc-900/50 text-xs text-zinc-400">
-            <Icon class="w-3.5 h-3.5 text-zinc-500" />
+            <Icon className="w-3.5 h-3.5 text-zinc-500" />
             {label}
           </span>
         ))}
       </div>
     </section>
 
-    <!-- Pagos info — Windows -->
     <section class="py-16 px-4 border-t border-zinc-800">
       <div class="max-w-3xl mx-auto text-center">
         <p class="text-xs font-mono uppercase tracking-widest text-zinc-500 mb-4">Metodos de pago — Plan Premium</p>

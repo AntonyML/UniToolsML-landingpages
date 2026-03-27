@@ -6,17 +6,19 @@ import { Input } from '@/components/ui/input';
 import { Loader, Lock } from 'lucide-react';
 
 type State = 'idle' | 'loading' | 'error';
-type Platform = 'windows' | 'android' | null;
+type Platform = 'windows' | 'android' | 'apple' | null;
 
 function detectPlatformFromPathOrUA(): Platform {
   if (typeof window === 'undefined') return null;
   const path = window.location.pathname.toLowerCase();
   if (path.includes('/windows')) return 'windows';
   if (path.includes('/android')) return 'android';
+  if (path.includes('/mac') || path.includes('/ios') || path.includes('/iphone') || path.includes('/ipad')) return 'apple';
 
   const ua = navigator.userAgent.toLowerCase();
   if (ua.includes('android')) return 'android';
   if (ua.includes('windows')) return 'windows';
+  if (ua.includes('iphone') || ua.includes('ipad') || ua.includes('macintosh') || ua.includes('mac os')) return 'apple';
   return null;
 }
 
@@ -41,15 +43,16 @@ export default function Newsletter({ platform: initialPlatform }: { platform?: P
   const [website, setWebsite] = useState(''); // honeypot
 
   useEffect(() => {
-    // Determine platform automatically; show form only when platform is known or hash explicitly requests it
-    const p = initialPlatform ?? detectPlatformFromPathOrUA();
+    // Determine platform: priority -> prop, localStorage selection, auto-detect
+    const stored = typeof window !== 'undefined' ? (localStorage.getItem('unitools-selected-platform') as Platform | null) : null;
+    const p = initialPlatform ?? stored ?? detectPlatformFromPathOrUA();
     const hash = typeof window !== 'undefined' ? window.location.hash : '';
     if (p) {
       setPlatform(p);
       setVisible(true);
     } else if (hash === '#newsletter') {
       // If user explicitly requests the form via hash, reveal it (still try to detect platform)
-      setPlatform(detectPlatformFromPathOrUA());
+      setPlatform(stored ?? detectPlatformFromPathOrUA());
       setVisible(true);
     }
   }, [initialPlatform]);

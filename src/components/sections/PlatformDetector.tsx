@@ -1,18 +1,31 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Monitor, Smartphone, ArrowRight, ChevronRight, Apple, Clock } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Monitor, Smartphone, ArrowRight, ChevronRight, Apple } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 type Platform = 'windows' | 'android' | 'apple' | null;
-type DetectedOS = 'windows' | 'android' | 'other';
+type DetectedOS = 'windows' | 'android' | 'apple' | 'other';
+
+interface ChannelConfig {
+  id: string;
+  icon: typeof Monitor;
+  title: string;
+  subtitle: string;
+  badge: string;
+  badgeColor: string;
+  items: string[];
+  cta: string;
+  ctaHref: string;
+  recommended?: boolean;
+}
 
 function detectOS(): DetectedOS {
   if (typeof navigator === 'undefined') return 'other';
   const ua = navigator.userAgent.toLowerCase();
   if (/android/.test(ua)) return 'android';
   if (/windows/.test(ua)) return 'windows';
+  if (/iphone|ipad|macintosh|mac os x/.test(ua)) return 'apple';
   return 'other';
 }
 
@@ -22,32 +35,30 @@ const COMING_SOON_CHANNELS: ChannelConfig[] = [
     icon: Monitor,
     title: 'macOS',
     subtitle: 'Mac M1 / Intel',
-    badge: 'Regístrate',
+    badge: 'Próximamente',
     badgeColor: 'zinc',
     items: [
       'App nativa para macOS',
       'Soporte Apple Silicon (M1/M2/M3)',
       'Integración con el ecosistema Apple',
     ],
-    cta: 'Solicitar acceso',
+    cta: 'Registrarme',
     ctaHref: '#newsletter',
-    ctaVariant: 'secondary',
   },
   {
     id: 'iphone',
     icon: Smartphone,
     title: 'iPhone / iPad',
     subtitle: 'iOS & iPadOS',
-    badge: 'Regístrate',
+    badge: 'Próximamente',
     badgeColor: 'zinc',
     items: [
       'App nativa para iOS / iPadOS',
       'Optimizada para iPhone y iPad',
       'Disponible en la App Store cuando esté publicada',
     ],
-    cta: 'Solicitar acceso',
+    cta: 'Registrarme',
     ctaHref: '#newsletter',
-    ctaVariant: 'secondary',
   },
 ];
 
@@ -66,7 +77,6 @@ const CHANNELS: ChannelConfig[] = [
     ],
     cta: 'Solicitar acceso',
     ctaHref: '/windows',
-    ctaVariant: 'glow',
   },
   {
     id: 'apk',
@@ -77,86 +87,106 @@ const CHANNELS: ChannelConfig[] = [
     badgeColor: 'emerald',
     items: [
       'Acceso a la beta para Android',
-      'Participa en el canal de beta para recibir builds y actualizaciones',
+      'Participa en el canal de beta para recibir builds',
       'Control sobre tu participación en la beta',
     ],
     cta: 'Solicitar acceso',
-    ctaHref: '/android',
-    ctaVariant: 'outline',
+    ctaHref: '/android-apk',
   },
 ];
 
 const badgeColors: Record<string, string> = {
   emerald: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20',
-  amber:   'bg-amber-500/10  text-amber-400  border-amber-500/20',
   zinc:    'bg-zinc-700/30   text-zinc-500   border-zinc-700/40',
 };
 
-// Reorder channels based on detected/selected platform
 function orderChannels(selected: Platform, detected: DetectedOS): ChannelConfig[] {
-  const channels = [...CHANNELS];
-  if (selected === 'android') {
-    return [
-      { ...channels.find(c => c.id === 'apk')!, recommended: true },
-      channels.find(c => c.id === 'windows')!,
-    ];
-  }
-  if (selected === 'windows') {
-    return [
-      { ...channels.find(c => c.id === 'windows')!, recommended: true },
-      channels.find(c => c.id === 'apk')!,
-    ];
-  }
-  // 'both' option removed: prefer explicit selection of one platform
-  // Auto-detected fallback
-  if (detected === 'android') {
-    return [
-      { ...channels.find(c => c.id === 'apk')!, recommended: true },
-      channels.find(c => c.id === 'windows')!,
-    ];
-  }
-  if (detected === 'windows') {
-    return [
-      { ...channels.find(c => c.id === 'windows')!, recommended: true },
-      channels.find(c => c.id === 'apk')!,
-    ];
-  }
+  const channels = [...CHANNELS, ...COMING_SOON_CHANNELS];
+  if (selected === 'android') return [
+    { ...channels.find(c => c.id === 'apk')!,     recommended: true },
+    channels.find(c => c.id === 'windows')!,
+    channels.find(c => c.id === 'mac')!,
+    channels.find(c => c.id === 'iphone')!,
+  ];
+  if (selected === 'windows') return [
+    { ...channels.find(c => c.id === 'windows')!, recommended: true },
+    channels.find(c => c.id === 'apk')!,
+    channels.find(c => c.id === 'mac')!,
+    channels.find(c => c.id === 'iphone')!,
+  ];
+  if (selected === 'apple') return [
+    { ...channels.find(c => c.id === 'mac')!,     recommended: true },
+    { ...channels.find(c => c.id === 'iphone')!,  recommended: true },
+    channels.find(c => c.id === 'apk')!,
+    channels.find(c => c.id === 'windows')!,
+  ];
+  if (detected === 'android') return [
+    { ...channels.find(c => c.id === 'apk')!,     recommended: true },
+    channels.find(c => c.id === 'windows')!,
+    channels.find(c => c.id === 'mac')!,
+    channels.find(c => c.id === 'iphone')!,
+  ];
+  if (detected === 'windows') return [
+    { ...channels.find(c => c.id === 'windows')!, recommended: true },
+    channels.find(c => c.id === 'apk')!,
+    channels.find(c => c.id === 'mac')!,
+    channels.find(c => c.id === 'iphone')!,
+  ];
+  if (detected === 'apple') return [
+    { ...channels.find(c => c.id === 'mac')!,     recommended: true },
+    { ...channels.find(c => c.id === 'iphone')!,  recommended: true },
+    channels.find(c => c.id === 'apk')!,
+    channels.find(c => c.id === 'windows')!,
+  ];
   return channels;
 }
 
 const selectorOptions: { value: Platform; label: string; icon: typeof Monitor }[] = [
-  { value: 'windows', label: 'Windows (PC / Laptop)',        icon: Monitor },
-  { value: 'android', label: 'Android (Teléfono / Tablet)', icon: Smartphone },
-  { value: 'apple',   label: 'Apple (iPhone / Mac)',        icon: Apple },
+  { value: 'windows', label: 'Windows',        icon: Monitor    },
+  { value: 'android', label: 'Android',        icon: Smartphone },
+  { value: 'apple',   label: 'Apple',          icon: Apple      },
 ];
 
 export default function PlatformDetector() {
   const [detected, setDetected] = useState<DetectedOS>('other');
   const [selected, setSelected] = useState<Platform>(null);
-  const [mounted, setMounted] = useState(false);
+  const [mounted, setMounted]   = useState(false);
 
   useEffect(() => {
-    const os = detectOS();
-    setDetected(os);
+    setDetected(detectOS());
     setMounted(true);
   }, []);
 
   const ordered = orderChannels(selected, detected);
-  const showAppleTeaser = selected === 'apple';
 
   const detectedLabel =
     detected === 'windows' ? 'Windows' :
     detected === 'android' ? 'Android' :
-    null;
+    detected === 'apple'   ? 'Apple'   : null;
+
+  const handleCTAClick = (id: string) => {
+    const platform = id === 'apk' ? 'android' : id === 'mac' || id === 'iphone' ? 'apple' : 'windows';
+    try { localStorage.setItem('unitools-selected-platform', platform); } catch {}
+  };
 
   return (
     <div className="w-full">
-      {/* Selector */}
-      <div className="mb-10 flex flex-col items-center gap-4">
-        <div className="flex items-center gap-2 text-sm text-zinc-400">
-          <span className="text-zinc-500 font-mono text-xs uppercase tracking-widest">Donde quieres usar UniToolsML?</span>
-        </div>
+      {/* Header */}
+      <div className="text-center mb-10">
+        <span className="inline-block mb-4 text-xs font-mono uppercase tracking-widest text-zinc-500">
+          Distribución
+        </span>
+        <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-100">
+          Disponible donde lo necesitas
+        </h2>
+        <p className="mt-3 text-zinc-500 text-sm max-w-md mx-auto">
+          Escritorio o móvil. Con tienda o sin tienda. Tú eliges.
+        </p>
+      </div>
 
+      {/* Selector */}
+      <div className="mb-10 flex flex-col items-center gap-3">
+        <p className="text-xs font-mono uppercase tracking-widest text-zinc-600">¿Dónde lo usas?</p>
         <div className="flex flex-wrap justify-center gap-2">
           {selectorOptions.map((opt) => {
             const Icon = opt.icon;
@@ -166,9 +196,9 @@ export default function PlatformDetector() {
                 key={opt.value}
                 onClick={() => setSelected(isActive ? null : opt.value)}
                 className={cn(
-                  'flex items-center gap-2 px-4 py-2.5 rounded-xl border text-sm font-medium transition-all duration-200',
+                  'flex items-center gap-2 px-4 py-2 rounded-lg border text-sm font-medium transition-all duration-200',
                   isActive
-                    ? 'bg-indigo-500/15 border-indigo-500/40 text-indigo-300 shadow-[0_0_20px_-5px_rgba(99,102,241,0.3)]'
+                    ? 'bg-indigo-500/15 border-indigo-500/40 text-indigo-300'
                     : 'bg-zinc-900/50 border-zinc-800 text-zinc-400 hover:border-zinc-700 hover:text-zinc-200'
                 )}
               >
@@ -179,78 +209,59 @@ export default function PlatformDetector() {
           })}
         </div>
 
-        {/* Auto-detect hint — only show if no selection made */}
         {mounted && !selected && detectedLabel && (
           <p className="flex items-center gap-1.5 text-xs text-zinc-600">
             <span className="w-1.5 h-1.5 rounded-full bg-indigo-500/60" />
-            Detectamos que estas en{' '}
-            <span className="text-zinc-400 font-medium">{detectedLabel}</span>
-            {' '}— recomendacion personalizada abajo
+            Detectamos <span className="text-zinc-400 font-medium ml-1">{detectedLabel}</span>
+            <span className="ml-1">— recomendación abajo</span>
           </p>
         )}
       </div>
 
-      {/* Apple coming soon teaser */}
-      {showAppleTeaser && (
-        <div className="mb-6 flex items-center gap-3 px-4 py-3 rounded-xl border border-zinc-700/50 bg-zinc-900/40 text-sm text-zinc-400">
-          <Clock className="w-4 h-4 text-zinc-500 shrink-0" />
-          <span>
-            <strong className="text-zinc-200">¿Tienes iPhone o Mac?</strong> Nos encantaría que pruebes UniToolsML en tu dispositivo.
-            Déjanos tu email abajo y te contactaremos con prioridad cuando abramos acceso a la beta. ¡Gracias por tu interés!
-          </span>
-        </div>
-      )}
-
-      {/* Channels grid */}
-      <div className={cn(
-        'grid gap-4 transition-all duration-300',
-        showAppleTeaser ? 'grid-cols-1 sm:grid-cols-2' : 'grid-cols-1 sm:grid-cols-3'
-      )}>
-        {(showAppleTeaser ? COMING_SOON_CHANNELS : ordered).map((channel, i) => {
+      {/* Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {ordered.map((channel) => {
           const Icon = channel.icon;
           const badgeClass = badgeColors[channel.badgeColor];
-          const isFirst = i === 0;
+          const isAvailable = channel.badgeColor === 'emerald';
 
           return (
             <div
               key={channel.id}
               className={cn(
-                'relative glass-card rounded-xl border p-5 flex flex-col gap-4 transition-all duration-300',
+                'relative glass-card rounded-xl border p-5 flex flex-col gap-4 transition-all duration-200',
                 channel.recommended
-                  ? 'border-indigo-500/40 shadow-[0_0_30px_-8px_rgba(99,102,241,0.25)] scale-[1.02]'
+                  ? 'border-indigo-500/40 shadow-[0_0_30px_-8px_rgba(99,102,241,0.25)]'
                   : 'border-zinc-800 hover:border-zinc-700'
               )}
             >
-              {/* Recommended pill */}
               {channel.recommended && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-0.5 rounded-full bg-indigo-600 text-white text-[10px] font-bold uppercase tracking-wider whitespace-nowrap shadow-lg">
-                  Recomendado para ti
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-0.5 rounded-full bg-indigo-600 text-white text-[10px] font-bold uppercase tracking-wider whitespace-nowrap">
+                  Recomendado
                 </div>
               )}
 
               {/* Header */}
-              <div className="flex items-start justify-between gap-3">
+              <div className="flex items-start justify-between gap-2">
                 <div className="flex items-center gap-3">
                   <div className={cn(
-                    'p-2.5 rounded-lg border',
-                    channel.recommended
-                      ? 'bg-indigo-500/15 border-indigo-500/30'
-                      : 'bg-zinc-800/60 border-zinc-700'
+                    'p-2 rounded-lg border',
+                    channel.recommended ? 'bg-indigo-500/15 border-indigo-500/30' : 'bg-zinc-800/60 border-zinc-700'
                   )}>
-                    <Icon className={cn('w-5 h-5', channel.recommended ? 'text-indigo-300' : 'text-zinc-300')} />
+                    <Icon className={cn('w-4 h-4', channel.recommended ? 'text-indigo-300' : 'text-zinc-400')} />
                   </div>
                   <div>
                     <p className="text-sm font-semibold text-zinc-100">{channel.title}</p>
                     <p className="text-xs text-zinc-500">{channel.subtitle}</p>
                   </div>
                 </div>
-                <span className={`inline-block text-[10px] font-mono font-semibold uppercase tracking-widest px-2 py-0.5 rounded border shrink-0 ${badgeClass}`}>
+                <span className={`text-[10px] font-mono font-semibold uppercase tracking-widest px-2 py-0.5 rounded border shrink-0 ${badgeClass}`}>
                   {channel.badge}
                 </span>
               </div>
 
               {/* Items */}
-              <ul className="flex flex-col gap-2 flex-1">
+              <ul className="flex flex-col gap-1.5 flex-1">
                 {channel.items.map((item) => (
                   <li key={item} className="flex items-start gap-2 text-xs text-zinc-400">
                     <ChevronRight className={cn('w-3.5 h-3.5 shrink-0 mt-0.5', channel.recommended ? 'text-indigo-500' : 'text-zinc-600')} />
@@ -259,26 +270,20 @@ export default function PlatformDetector() {
                 ))}
               </ul>
 
-              {/* CTA */}
-              <Button
-                variant={channel.ctaVariant}
-                size="sm"
-                className="w-full mt-auto"
-                disabled={channel.comingSoon}
-                asChild={!channel.comingSoon}
-              >
-                {channel.comingSoon ? (
-                  <span className="flex items-center gap-2 justify-center opacity-50 cursor-not-allowed">
-                    <Clock className="w-3.5 h-3.5" />
-                    Próximamente
-                  </span>
-                ) : (
-                  <a href={channel.ctaHref}>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                    {channel.cta}
-                  </a>
+              {/* CTA — un solo estilo para todos */}
+              <a
+                href={channel.ctaHref}
+                onClick={() => handleCTAClick(channel.id)}
+                className={cn(
+                  'mt-auto flex items-center justify-center gap-2 w-full py-2 px-3 rounded-lg border text-xs font-medium transition-all duration-200',
+                  isAvailable
+                    ? 'bg-indigo-600 border-indigo-600 text-white hover:bg-indigo-500 hover:border-indigo-500'
+                    : 'bg-zinc-900 border-zinc-700 text-zinc-400 hover:border-zinc-600 hover:text-zinc-300'
                 )}
-              </Button>
+              >
+                <ArrowRight className="w-3.5 h-3.5" />
+                {channel.cta}
+              </a>
             </div>
           );
         })}

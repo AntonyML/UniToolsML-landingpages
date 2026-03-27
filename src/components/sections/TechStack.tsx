@@ -16,23 +16,10 @@ export default function TechStack() {
 
       <div className="max-w-5xl mx-auto">
 
-        {/* ── Distribucion con detector inteligente ── */}
-        <div className="text-center mb-14">
-          <span className="inline-block mb-4 text-xs font-mono uppercase tracking-widest text-zinc-500">
-            Distribucion
-          </span>
-          <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-100">
-            Disponible donde lo necesitas
-          </h2>
-          <p className="mt-3 text-zinc-500 text-sm max-w-md mx-auto">
-            Escritorio o movil. Con tienda o sin tienda. Tu eliges.
-          </p>
-        </div>
-
-        {/* Platform detector: client:load para que la deteccion de UA sea inmediata */}
+        {/* Platform detector */}
         <PlatformDetector client:load />
 
-        {/* ── Stack tecnico ── */}
+        {/* Stack tecnico */}
         <div className="mt-20 text-center mb-10">
           <span className="inline-block mb-4 text-xs font-mono uppercase tracking-widest text-zinc-500">
             Stack tecnico
