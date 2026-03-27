@@ -6,12 +6,13 @@ import { Input } from '@/components/ui/input';
 import { Loader, Lock } from 'lucide-react';
 
 type State = 'idle' | 'loading' | 'error';
-type Platform = 'windows' | 'android' | null;
+type Platform = 'windows' | 'android' | 'play' | null;
 
 function detectPlatformFromPathOrUA(): Platform {
   if (typeof window === 'undefined') return null;
   const path = window.location.pathname.toLowerCase();
   if (path.includes('/windows')) return 'windows';
+  if (path.includes('/play')) return 'play';
   if (path.includes('/android')) return 'android';
 
   const ua = navigator.userAgent.toLowerCase();
@@ -75,7 +76,7 @@ export default function Newsletter({ platform: initialPlatform }: { platform?: P
 
     try {
       if (!API_URL_RAW) {
-        setErrorMessage('El servicio de descargas no está disponible. Intenta de nuevo más tarde.');
+        setErrorMessage('El servicio de registro no está disponible. Intenta de nuevo más tarde.');
         setState('error');
         return;
       }
@@ -106,29 +107,28 @@ export default function Newsletter({ platform: initialPlatform }: { platform?: P
       const data = await res.json();
       const success = data?.success;
       const emailStatus = data?.emailStatus;
-      const downloadUrl = data?.downloadUrl;
+      const message = data?.message;
 
-      if (!success || !downloadUrl) {
-        setErrorMessage('Respuesta inválida del servidor');
+      if (!success) {
+        setErrorMessage(data?.error || 'Respuesta inválida del servidor');
         setState('error');
         return;
       }
 
       // Mostrar feedback según el estado del envío de email
       if (emailStatus === 'sent') {
-        setFeedbackMessage('Correo enviado. Revisa tu bandeja.');
+        setFeedbackMessage(message || 'Registro exitoso. Revisa tu bandeja.');
         setFeedbackType('success');
       } else if (emailStatus === 'failed') {
-        setFeedbackMessage('No se pudo enviar el correo, pero puedes descargar desde el enlace.');
+        setFeedbackMessage(message || 'Registro recibido. No se pudo enviar confirmación por correo.');
         setFeedbackType('warning');
       } else {
-        setFeedbackMessage('¡Listo! Tu descarga comenzará en un momento.');
+        setFeedbackMessage(message || 'Registro exitoso. Te avisaremos si eres seleccionado para la beta.');
         setFeedbackType('success');
       }
 
-      // detener loading antes de iniciar la descarga
+      // detener loading
       setState('idle');
-      window.location.href = downloadUrl;
     } catch (err: any) {
       setErrorMessage(err?.message ?? 'Ocurrió un error de red. Revisa tu conexión e intenta de nuevo.');
       setState('error');
@@ -140,8 +140,8 @@ export default function Newsletter({ platform: initialPlatform }: { platform?: P
   return (
     <section id="newsletter" className="py-20 px-4">
       <div className="max-w-xl mx-auto text-center">
-        <h2 className="text-3xl font-bold mb-3">Descargar UniToolsML</h2>
-        <p className="text-sm text-zinc-400 mb-6">Selecciona tu plataforma y descarga la herramienta ahora.</p>
+        <h2 className="text-3xl font-bold mb-3">Únete a la beta de UniToolsML</h2>
+        <p className="text-sm text-zinc-400 mb-6">Selecciona tu plataforma y regístrate para la beta.</p>
 
         <form onSubmit={submit} className="flex flex-col gap-3">
           <input type="text" name="website" value={website} onChange={(e) => setWebsite(e.target.value)} style={{ display: 'none' }} autoComplete="off" />
@@ -179,7 +179,7 @@ export default function Newsletter({ platform: initialPlatform }: { platform?: P
                 Enviando...
               </>
             ) : (
-              'Descargar ahora'
+              'Registrarme'
             )}
           </Button>
 

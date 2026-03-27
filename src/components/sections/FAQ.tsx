@@ -11,11 +11,11 @@ const faqs = [
   },
   {
     q: 'En que plataformas esta disponible?',
-    a: 'Windows 10/11 esta disponible para descarga directa desde esta web. Android esta en desarrollo activo — podras descargar el APK directo o conseguirlo via Play Store . macOS y Linux estan  sin fecha confirmada.',
+    a: 'Windows 10/11 está en fases de beta: puedes solicitar acceso registrándote. Android está en desarrollo activo — puedes solicitar acceso a la beta o esperar la publicación en Google Play. macOS y Linux están sin fecha confirmada.',
   },
   {
     q: 'Como funciona el pago? Aceptan SINPE?',
-    a: 'Si. Aceptamos SINPE Movil y PayPal para la version de escritorio y el APK de Android. Para la version de Play Store, el pago pasa por Google Play Billing (credito, debito, etc).',
+    a: 'Si. Aceptamos SINPE Movil y PayPal para la versión de escritorio y la versión Android. Para la versión de Play Store, el pago pasa por Google Play Billing (crédito, débito, etc).',
   },
   {
     q: 'Que incluye el plan Premium?',
@@ -27,7 +27,7 @@ const faqs = [
   },
   {
     q: 'Por que Tauri y no Electron?',
-    a: 'Electron incluye Chromium completo, lo que resulta en apps de 200-500MB con alto consumo de RAM. Tauri usa el WebView nativo del sistema y Rust para el backend — el instalador pesa menos de 15MB y el consumo de memoria es mucho menor.',
+    a: 'Electron incluye Chromium completo, lo que resulta en apps de 200-500MB con alto consumo de RAM. Tauri usa el WebView nativo del sistema y Rust para el backend — el paquete pesa menos de 15MB y el consumo de memoria es mucho menor.',
   },
   {
     q: 'Las herramientas de IA funcionan sin internet?',

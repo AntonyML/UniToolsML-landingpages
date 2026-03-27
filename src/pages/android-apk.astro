@@ -8,8 +8,8 @@ import { Smartphone, ShieldCheck, Wifi, Package } from 'lucide-react';
 ---
 
 <BaseLayout
-  title="UniToolsML APK para Android — Descarga directa"
-  description="Descarga el APK de UniToolsML para Android. Instalacion directa, sin restricciones de tienda. Mas de 40 herramientas offline para estudiantes."
+  title="UniToolsML para Android — Registro beta"
+  description="Regístrate para acceder a la beta de UniToolsML en Android. Recibirás instrucciones cuando el paquete esté disponible."
 >
   <Navbar client:load />
   <main>
@@ -21,15 +21,14 @@ import { Smartphone, ShieldCheck, Wifi, Package } from 'lucide-react';
 
       <div class="mb-8 flex items-center gap-2 px-3 py-1.5 rounded-full border border-amber-500/30 bg-amber-500/10 text-amber-300 text-xs font-medium">
         <Smartphone class="w-3.5 h-3.5" />
-        UniToolsML APK — Android
+        UniToolsML — Android (Beta)
       </div>
 
       <h1 class="text-center text-4xl sm:text-5xl md:text-6xl font-bold leading-[1.08] tracking-tight max-w-3xl text-gradient mb-4">
-        Android sin intermediarios.
+        Participa en la beta para Android
       </h1>
       <p class="text-center text-zinc-400 text-base sm:text-lg max-w-xl leading-relaxed mb-10">
-        APK descargable directo desde esta web. Instalacion manual, control total sobre actualizaciones.
-        Funciona <span class="text-zinc-200 font-medium">100% offline</span>.
+        Regístrate para la beta y te notificaremos cuando la versión Android esté disponible. Funciona <span class="text-zinc-200 font-medium">100% offline</span> una vez instalada.
       </p>
 
       <div class="flex flex-col sm:flex-row items-center gap-3 mb-10">
@@ -38,7 +37,7 @@ import { Smartphone, ShieldCheck, Wifi, Package } from 'lucide-react';
           class="inline-flex items-center gap-2 px-6 py-3 rounded-md bg-amber-600 text-white text-sm font-medium hover:bg-amber-500 transition-colors shadow-[0_0_30px_-8px_rgba(217,119,6,0.5)]"
         >
           <Package class="w-4 h-4" />
-          Notificarme cuando el APK este listo
+          Notificarme sobre la beta de Android
         </a>
         <a href="/" class="text-sm text-zinc-500 hover:text-zinc-300 transition-colors">
           Ver todas las opciones
@@ -46,10 +45,10 @@ import { Smartphone, ShieldCheck, Wifi, Package } from 'lucide-react';
       </div>
 
       <div class="flex flex-wrap justify-center gap-2">
-        {[
+          {[
           { icon: ShieldCheck, label: 'Sin cuenta requerida (herramientas gratis)' },
           { icon: Wifi,        label: '100% offline' },
-          { icon: Package,     label: 'APK descargable — sin Play Store' },
+          { icon: Package,     label: 'Acceso a la beta — fuera de Play Store' },
         ].map(({ icon: Icon, label }) => (
           <span class="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-zinc-800 bg-zinc-900/50 text-xs text-zinc-400">
             <Icon class="w-3.5 h-3.5 text-zinc-500" />
@@ -59,23 +58,11 @@ import { Smartphone, ShieldCheck, Wifi, Package } from 'lucide-react';
       </div>
     </section>
 
-    <!-- Como instalar un APK -->
+    <!-- Beta info — Android -->
     <section class="py-16 px-4 border-t border-zinc-800">
-      <div class="max-w-2xl mx-auto">
-        <p class="text-xs font-mono uppercase tracking-widest text-zinc-500 mb-6 text-center">Como instalar</p>
-        <div class="flex flex-col gap-3">
-          {[
-            { step: '01', text: 'Descarga el archivo .apk desde esta pagina.' },
-            { step: '02', text: 'En Android: Ajustes → Seguridad → Fuentes desconocidas (o "Instalar apps desconocidas").' },
-            { step: '03', text: 'Abre el archivo .apk descargado y sigue el instalador.' },
-            { step: '04', text: 'Listo. UniToolsML ya esta en tu telefono.' },
-          ].map(({ step, text }) => (
-            <div class="flex items-start gap-4 p-4 glass-card rounded-xl border border-zinc-800">
-              <span class="text-xs font-mono text-indigo-400 font-bold shrink-0 mt-0.5">{step}</span>
-              <p class="text-sm text-zinc-400">{text}</p>
-            </div>
-          ))}
-        </div>
+      <div class="max-w-2xl mx-auto text-center">
+        <p class="text-xs font-mono uppercase tracking-widest text-zinc-500 mb-6">Beta Android</p>
+        <p class="text-sm text-zinc-400">La versión Android está en beta cerrada. Regístrate usando el formulario y te avisaremos cuando puedas acceder y recibir instrucciones para unirte al programa.</p>
       </div>
     </section>
 

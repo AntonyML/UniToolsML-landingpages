@@ -48,6 +48,17 @@ const THEME_CSS = `
 [data-theme="violet"].dark{--background:oklch(0.141 0.005 285.823);--foreground:oklch(0.985 0 0);--card:oklch(0.21 0.006 285.885);--card-foreground:oklch(0.985 0 0);--popover:oklch(0.21 0.006 285.885);--popover-foreground:oklch(0.985 0 0);--primary:oklch(0.606 0.25 292.717);--primary-foreground:oklch(0.969 0.016 293.756);--secondary:oklch(0.274 0.006 286.033);--secondary-foreground:oklch(0.985 0 0);--muted:oklch(0.274 0.006 286.033);--muted-foreground:oklch(0.705 0.015 286.067);--accent:oklch(0.274 0.006 286.033);--accent-foreground:oklch(0.985 0 0);--destructive:oklch(0.704 0.191 22.216);--border:oklch(1 0 0/10%);--input:oklch(1 0 0/15%);--ring:oklch(0.38 0.189 293.745);}
 [data-theme="yellow"]{--radius:0.65rem;--background:oklch(1 0 0);--foreground:oklch(0.141 0.005 285.823);--card:oklch(1 0 0);--card-foreground:oklch(0.141 0.005 285.823);--popover:oklch(1 0 0);--popover-foreground:oklch(0.141 0.005 285.823);--primary:oklch(0.852 0.199 91.936);--primary-foreground:oklch(0.421 0.095 57.708);--secondary:oklch(0.967 0.001 286.375);--secondary-foreground:oklch(0.21 0.006 285.885);--muted:oklch(0.967 0.001 286.375);--muted-foreground:oklch(0.552 0.016 285.938);--accent:oklch(0.967 0.001 286.375);--accent-foreground:oklch(0.21 0.006 285.885);--destructive:oklch(0.577 0.245 27.325);--border:oklch(0.92 0.004 286.32);--input:oklch(0.92 0.004 286.32);--ring:oklch(0.852 0.199 91.936);}
 [data-theme="yellow"].dark{--background:oklch(0.141 0.005 285.823);--foreground:oklch(0.985 0 0);--card:oklch(0.21 0.006 285.885);--card-foreground:oklch(0.985 0 0);--popover:oklch(0.21 0.006 285.885);--popover-foreground:oklch(0.985 0 0);--primary:oklch(0.795 0.184 86.047);--primary-foreground:oklch(0.421 0.095 57.708);--secondary:oklch(0.274 0.006 286.033);--secondary-foreground:oklch(0.985 0 0);--muted:oklch(0.274 0.006 286.033);--muted-foreground:oklch(0.705 0.015 286.067);--accent:oklch(0.274 0.006 286.033);--accent-foreground:oklch(0.985 0 0);--destructive:oklch(0.704 0.191 22.216);--border:oklch(1 0 0/10%);--input:oklch(1 0 0/15%);--ring:oklch(0.421 0.095 57.708);}
+/* Keep theme switcher icons stable between server and client
+   Render both icons in DOM and control visibility via CSS (prefers-color-scheme
+   and data-theme). This avoids SSR/Client mismatches on the active SVG/path. */
+.ut-theme-icon .ut-sun { display: inline-block; }
+.ut-theme-icon .ut-moon { display: none; }
+@media (prefers-color-scheme: dark) {
+  .ut-theme-icon .ut-sun { display: none; }
+  .ut-theme-icon .ut-moon { display: inline-block; }
+}
+[data-theme].dark .ut-theme-icon .ut-sun { display: none; }
+[data-theme].dark .ut-theme-icon .ut-moon { display: inline-block; }
 `;
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
@@ -135,7 +146,6 @@ export default function ThemeSwitcher() {
   }, [theme]);
 
   const isDark = resolveIsDark(mode);
-  const ActiveIcon = isDark ? Moon : Sun;
 
   return (
     <div className="relative" ref={ref}>
@@ -145,7 +155,10 @@ export default function ThemeSwitcher() {
         aria-label="Cambiar tema"
         className="flex items-center justify-center h-9 w-9 rounded-md text-zinc-400 hover:bg-zinc-800 hover:text-white transition-colors"
       >
-        <ActiveIcon className="h-4 w-4" />
+        <span className="ut-theme-icon inline-flex items-center">
+          <Sun className="ut-sun h-4 w-4" />
+          <Moon className="ut-moon h-4 w-4" />
+        </span>
       </button>
 
       {/* Dropdown */}

@@ -79,27 +79,27 @@ const CHANNELS: ChannelConfig[] = [
     badge: 'Disponible',
     badgeColor: 'emerald',
     items: [
-      'Instalador .exe — descarga directa',
+      'Acceso a la beta para Windows',
       'Sin tienda, sin intermediarios',
-      'Actualizaciones manuales o automaticas',
+      'Actualizaciones según el programa de la beta',
     ],
-    cta: 'Descargar para Windows',
+    cta: 'Solicitar acceso',
     ctaHref: '/windows',
     ctaVariant: 'glow',
   },
   {
     id: 'apk',
     icon: Smartphone,
-    title: 'Android APK',
+    title: 'Android',
     subtitle: 'Android 8.0+',
     badge: 'Disponible',
     badgeColor: 'emerald',
     items: [
-      'APK descargable directamente desde esta web',
-      'Instalación directa, sin restricciones de tienda',
-      'Control total sobre actualizaciones',
+      'Acceso a la beta para Android',
+      'Participa en el canal de beta para recibir builds y actualizaciones',
+      'Control sobre tu participación en la beta',
     ],
-    cta: 'Descargar APK',
+    cta: 'Solicitar acceso',
     ctaHref: '/android',
     ctaVariant: 'outline',
   },
@@ -112,10 +112,10 @@ const CHANNELS: ChannelConfig[] = [
     badgeColor: 'zinc',
     items: [
       'Próximamente en Google Play Store',
-      'Actualizaciones automáticas desde la tienda',
-      'Proceso de instalación familiar y seguro',
+      'Publicación y actualizaciones desde Play Store cuando esté disponible',
+      'Recibirás notificaciones cuando la app esté publicada',
     ],
-    cta: 'Próximamente',
+    cta: 'Notificarme',
     ctaHref: '/play',
     ctaVariant: 'secondary',
     playStoreSafe: true,
@@ -323,7 +323,7 @@ export default function PlatformDetector() {
                   </span>
                 ) : (
                   <a href={channel.ctaHref}>
-                    {channel.id === 'windows' ? <Download className="w-3.5 h-3.5" /> : <ArrowRight className="w-3.5 h-3.5" />}
+                    <ArrowRight className="w-3.5 h-3.5" />
                     {channel.cta}
                   </a>
                 )}
