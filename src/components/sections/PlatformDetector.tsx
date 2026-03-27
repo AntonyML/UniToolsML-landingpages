@@ -1,11 +1,11 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Monitor, Smartphone, ShoppingBag, ArrowRight, Download, ExternalLink, ChevronRight, Apple, Clock } from 'lucide-react';
+import { Monitor, Smartphone, ArrowRight, ChevronRight, Apple, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
-type Platform = 'windows' | 'android' | 'both' | 'apple' | null;
+type Platform = 'windows' | 'android' | 'apple' | null;
 type DetectedOS = 'windows' | 'android' | 'other';
 
 function detectOS(): DetectedOS {
@@ -16,57 +16,38 @@ function detectOS(): DetectedOS {
   return 'other';
 }
 
-interface ChannelConfig {
-  id: string;
-  icon: typeof Monitor;
-  title: string;
-  subtitle: string;
-  badge: string;
-  badgeColor: string;
-  items: string[];
-  cta: string;
-  ctaHref: string;
-  ctaVariant: 'glow' | 'outline' | 'secondary';
-  recommended?: boolean;
-  // Play Store channel must NOT mention external payment comparisons
-  playStoreSafe?: boolean;
-  comingSoon?: boolean;
-}
-
 const COMING_SOON_CHANNELS: ChannelConfig[] = [
   {
     id: 'mac',
     icon: Monitor,
     title: 'macOS',
     subtitle: 'Mac M1 / Intel',
-    badge: 'Próximamente',
+    badge: 'Regístrate',
     badgeColor: 'zinc',
     items: [
       'App nativa para macOS',
       'Soporte Apple Silicon (M1/M2/M3)',
       'Integración con el ecosistema Apple',
     ],
-    cta: 'Notificarme',
+    cta: 'Solicitar acceso',
     ctaHref: '#newsletter',
     ctaVariant: 'secondary',
-    comingSoon: true,
   },
   {
     id: 'iphone',
     icon: Smartphone,
     title: 'iPhone / iPad',
     subtitle: 'iOS & iPadOS',
-    badge: 'Próximamente',
+    badge: 'Regístrate',
     badgeColor: 'zinc',
     items: [
       'App nativa para iOS / iPadOS',
       'Optimizada para iPhone y iPad',
-      'Disponible en la App Store',
+      'Disponible en la App Store cuando esté publicada',
     ],
-    cta: 'Notificarme',
+    cta: 'Solicitar acceso',
     ctaHref: '#newsletter',
     ctaVariant: 'secondary',
-    comingSoon: true,
   },
 ];
 
@@ -103,24 +84,6 @@ const CHANNELS: ChannelConfig[] = [
     ctaHref: '/android',
     ctaVariant: 'outline',
   },
-  {
-    id: 'play',
-    icon: ShoppingBag,
-    title: 'Google Play',
-    subtitle: 'Play Store',
-    badge: 'Próximamente',
-    badgeColor: 'zinc',
-    items: [
-      'Próximamente en Google Play Store',
-      'Publicación y actualizaciones desde Play Store cuando esté disponible',
-      'Recibirás notificaciones cuando la app esté publicada',
-    ],
-    cta: 'Notificarme',
-    ctaHref: '/play',
-    ctaVariant: 'secondary',
-    playStoreSafe: true,
-    comingSoon: true,
-  },
 ];
 
 const badgeColors: Record<string, string> = {
@@ -133,10 +96,8 @@ const badgeColors: Record<string, string> = {
 function orderChannels(selected: Platform, detected: DetectedOS): ChannelConfig[] {
   const channels = [...CHANNELS];
   if (selected === 'android') {
-    // Play Store first, then APK, then Windows
     return [
-      { ...channels.find(c => c.id === 'play')!, recommended: true },
-      channels.find(c => c.id === 'apk')!,
+      { ...channels.find(c => c.id === 'apk')!, recommended: true },
       channels.find(c => c.id === 'windows')!,
     ];
   }
@@ -144,21 +105,13 @@ function orderChannels(selected: Platform, detected: DetectedOS): ChannelConfig[
     return [
       { ...channels.find(c => c.id === 'windows')!, recommended: true },
       channels.find(c => c.id === 'apk')!,
-      channels.find(c => c.id === 'play')!,
     ];
   }
-  if (selected === 'both') {
-    return [
-      { ...channels.find(c => c.id === 'windows')!, recommended: true },
-      { ...channels.find(c => c.id === 'play')!, recommended: true },
-      channels.find(c => c.id === 'apk')!,
-    ];
-  }
+  // 'both' option removed: prefer explicit selection of one platform
   // Auto-detected fallback
   if (detected === 'android') {
     return [
-      { ...channels.find(c => c.id === 'play')!, recommended: true },
-      channels.find(c => c.id === 'apk')!,
+      { ...channels.find(c => c.id === 'apk')!, recommended: true },
       channels.find(c => c.id === 'windows')!,
     ];
   }
@@ -166,17 +119,15 @@ function orderChannels(selected: Platform, detected: DetectedOS): ChannelConfig[
     return [
       { ...channels.find(c => c.id === 'windows')!, recommended: true },
       channels.find(c => c.id === 'apk')!,
-      channels.find(c => c.id === 'play')!,
     ];
   }
   return channels;
 }
 
 const selectorOptions: { value: Platform; label: string; icon: typeof Monitor }[] = [
-  { value: 'windows', label: 'Estudio en PC',      icon: Monitor },
-  { value: 'android', label: 'Uso en el telefono', icon: Smartphone },
-  { value: 'both',    label: 'Ambos',              icon: ShoppingBag },
-  { value: 'apple',   label: 'iPhone / Mac',       icon: Apple },
+  { value: 'windows', label: 'Windows (PC / Laptop)',        icon: Monitor },
+  { value: 'android', label: 'Android (Teléfono / Tablet)', icon: Smartphone },
+  { value: 'apple',   label: 'Apple (iPhone / Mac)',        icon: Apple },
 ];
 
 export default function PlatformDetector() {
@@ -244,8 +195,8 @@ export default function PlatformDetector() {
         <div className="mb-6 flex items-center gap-3 px-4 py-3 rounded-xl border border-zinc-700/50 bg-zinc-900/40 text-sm text-zinc-400">
           <Clock className="w-4 h-4 text-zinc-500 shrink-0" />
           <span>
-            <strong className="text-zinc-200">iPhone y Mac</strong> están en el roadmap.
-            Regístrate abajo para recibir una notificación cuando estén disponibles.
+            <strong className="text-zinc-200">¿Tienes iPhone o Mac?</strong> Nos encantaría que pruebes UniToolsML en tu dispositivo.
+            Déjanos tu email abajo y te contactaremos con prioridad cuando abramos acceso a la beta. ¡Gracias por tu interés!
           </span>
         </div>
       )}

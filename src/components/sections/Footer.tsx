@@ -44,7 +44,7 @@ export default function Footer() {
               Suite de productividad para estudiantes universitarios. Mas de 40 herramientas. Construida con Rust. Funciona offline. Hecha en Costa Rica.
             </p>
             <p className="mt-3 text-xs text-zinc-600">
-              Pagos: SINPE Movil + PayPal (escritorio y APK) — Google Play Billing (Play Store)
+              Pagos: SINPE Movil + PayPal (escritorio y APK)
             </p>
 
             {/* Social links */}

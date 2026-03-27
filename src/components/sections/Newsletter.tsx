@@ -6,13 +6,12 @@ import { Input } from '@/components/ui/input';
 import { Loader, Lock } from 'lucide-react';
 
 type State = 'idle' | 'loading' | 'error';
-type Platform = 'windows' | 'android' | 'play' | null;
+type Platform = 'windows' | 'android' | null;
 
 function detectPlatformFromPathOrUA(): Platform {
   if (typeof window === 'undefined') return null;
   const path = window.location.pathname.toLowerCase();
   if (path.includes('/windows')) return 'windows';
-  if (path.includes('/play')) return 'play';
   if (path.includes('/android')) return 'android';
 
   const ua = navigator.userAgent.toLowerCase();

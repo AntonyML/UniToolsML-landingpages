@@ -11,11 +11,11 @@ const faqs = [
   },
   {
     q: 'En que plataformas esta disponible?',
-    a: 'Windows 10/11 está en fases de beta: puedes solicitar acceso registrándote. Android está en desarrollo activo — puedes solicitar acceso a la beta o esperar la publicación en Google Play. macOS y Linux están sin fecha confirmada.',
+    a: 'Windows 10/11 está en fases de beta: puedes solicitar acceso registrándote. Android está en desarrollo activo — puedes solicitar acceso a la beta o esperar su publicación pública. macOS y Linux están sin fecha confirmada.',
   },
   {
     q: 'Como funciona el pago? Aceptan SINPE?',
-    a: 'Si. Aceptamos SINPE Movil y PayPal para la versión de escritorio y la versión Android. Para la versión de Play Store, el pago pasa por Google Play Billing (crédito, débito, etc).',
+    a: 'Si. Aceptamos SINPE Movil y PayPal para la versión de escritorio y la versión Android. Para versiones publicadas en tiendas, el pago pasa por el sistema de facturación de la tienda (crédito, débito, etc).',
   },
   {
     q: 'Que incluye el plan Premium?',
