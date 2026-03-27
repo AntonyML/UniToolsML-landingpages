@@ -142,9 +142,9 @@ function orderChannels(selected: Platform, detected: DetectedOS): ChannelConfig[
 }
 
 const selectorOptions: { value: Platform; label: string; icon: typeof Monitor }[] = [
-  { value: 'windows', label: 'Windows',        icon: Monitor    },
-  { value: 'android', label: 'Android',        icon: Smartphone },
-  { value: 'apple',   label: 'Apple',          icon: Apple      },
+  { value: 'windows', label: 'Windows',  icon: Monitor    },
+  { value: 'android', label: 'Android',  icon: Smartphone },
+  { value: 'apple',   label: 'Apple',    icon: Apple      },
 ];
 
 export default function PlatformDetector() {
@@ -171,22 +171,22 @@ export default function PlatformDetector() {
 
   return (
     <div className="w-full">
-      {/* Header */}
+      {/* Header — mismo patrón que Features, FAQ y TechStack */}
       <div className="text-center mb-10">
-        <span className="inline-block mb-4 text-xs font-mono uppercase tracking-widest text-zinc-500">
+        <span className="inline-block mb-3 text-xs font-mono uppercase tracking-widest text-zinc-500">
           Distribución
         </span>
         <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-100">
           Disponible donde lo necesitas
         </h2>
-        <p className="mt-3 text-zinc-500 text-sm max-w-md mx-auto">
+        <p className="mt-3 text-sm text-zinc-400 max-w-md mx-auto">
           Escritorio o móvil. Con tienda o sin tienda. Tú eliges.
         </p>
       </div>
 
       {/* Selector */}
       <div className="mb-10 flex flex-col items-center gap-3">
-        <p className="text-xs font-mono uppercase tracking-widest text-zinc-600">¿Dónde lo usas?</p>
+        <p className="text-xs font-mono uppercase tracking-widest text-zinc-500">¿Dónde lo usas?</p>
         <div className="flex flex-wrap justify-center gap-2">
           {selectorOptions.map((opt) => {
             const Icon = opt.icon;
@@ -210,10 +210,9 @@ export default function PlatformDetector() {
         </div>
 
         {mounted && !selected && detectedLabel && (
-          <p className="flex items-center gap-1.5 text-xs text-zinc-600">
+          <p className="flex items-center gap-1.5 text-xs text-zinc-400">
             <span className="w-1.5 h-1.5 rounded-full bg-indigo-500/60" />
-            Detectamos <span className="text-zinc-400 font-medium ml-1">{detectedLabel}</span>
-            <span className="ml-1">— recomendación abajo</span>
+            Detectamos {detectedLabel} — recomendación abajo
           </p>
         )}
       </div>
@@ -241,7 +240,6 @@ export default function PlatformDetector() {
                 </div>
               )}
 
-              {/* Header */}
               <div className="flex items-start justify-between gap-2">
                 <div className="flex items-center gap-3">
                   <div className={cn(
@@ -260,7 +258,6 @@ export default function PlatformDetector() {
                 </span>
               </div>
 
-              {/* Items */}
               <ul className="flex flex-col gap-1.5 flex-1">
                 {channel.items.map((item) => (
                   <li key={item} className="flex items-start gap-2 text-xs text-zinc-400">
@@ -270,7 +267,6 @@ export default function PlatformDetector() {
                 ))}
               </ul>
 
-              {/* CTA — un solo estilo para todos */}
               <a
                 href={channel.ctaHref}
                 onClick={() => handleCTAClick(channel.id)}

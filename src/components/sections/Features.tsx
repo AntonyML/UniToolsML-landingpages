@@ -109,22 +109,18 @@ export default function Features() {
   return (
     <section id="features" className="relative py-28 px-4">
       <div className="max-w-6xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <span className="inline-block mb-4 text-xs font-mono uppercase tracking-widest text-indigo-400 px-3 py-1 rounded-full border border-indigo-500/20 bg-indigo-500/10">
-            Caracteristicas
+        <div className="text-center mb-10">
+          <span className="inline-block mb-3 text-xs font-mono uppercase tracking-widest text-zinc-500">
+            Características
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-gradient">
-            Todo en una sola app,
-            <br />
-            <span className="text-zinc-300">sin conexion a internet.</span>
+          <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-100">
+            Todo en una sola app, sin conexión a internet
           </h2>
-          <p className="mt-4 text-zinc-400 text-base max-w-xl mx-auto leading-relaxed">
-            Disenado para flujos de trabajo academicos reales. Las herramientas gratuitas funcionan sin cuenta. La IA generativa requiere tu propia API key o un plan Premium.
+          <p className="mt-2 text-sm text-zinc-400 max-w-xl mx-auto leading-relaxed">
+            Diseñado para flujos de trabajo académicos reales. Las herramientas gratuitas funcionan sin cuenta. La IA generativa requiere tu propia API key o un plan Premium.
           </p>
         </div>
 
-        {/* Bento grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 auto-rows-auto gap-4">
           {features.map((feature) => {
             const accent = accentMap[feature.accent];
@@ -146,11 +142,11 @@ export default function Features() {
                     <span className={`inline-block text-[10px] font-mono font-semibold uppercase tracking-widest px-2 py-0.5 rounded border ${accent.badge} mb-2`}>
                       {feature.label}
                     </span>
-                    <h3 className="text-sm font-semibold text-zinc-100 leading-snug mb-2">
+                    <h3 className="text-sm font-medium text-zinc-100 leading-snug mb-1">
                       {feature.title}
                     </h3>
-                    <p className="text-sm text-zinc-500 leading-relaxed">
-                      {feature.description}
+                    <p className="text-sm text-zinc-400 leading-relaxed">
+                    {feature.description}
                     </p>
                   </div>
                 </div>

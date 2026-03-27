@@ -264,18 +264,16 @@ export default function Hero() {
       </div>
 
       {/* Headline */}
-      <h1 className="text-center text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.08] tracking-tight max-w-4xl animate-fade-up" style={{ animationDelay: '100ms' }}>
-        <span className="text-gradient">Mas de 40 herramientas</span><br />
-        <span className="text-zinc-100">para el estudiante</span><br />
+      <h1 className="text-center text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.08] tracking-tight max-w-4xl text-zinc-50 animate-fade-up" style={{ animationDelay: '100ms' }}>
+        Mas de 40 herramientas<br />
+        para el estudiante<br />
         <span className="text-gradient-indigo">universitario.</span>
       </h1>
 
       {/* Subheadline */}
-      <p className="mt-6 text-center text-zinc-400 text-base sm:text-lg max-w-2xl leading-relaxed animate-fade-up" style={{ animationDelay: '200ms' }}>
-        PDFs, citas, notas, Pomodoro, generacion de citas APA/IEEE y herramientas de{' '}
-        <span className="text-zinc-200 font-medium">IA generativa</span>.
-        Construido con <span className="text-zinc-200 font-medium">Rust + Tauri</span>,
-        funcionando <span className="text-zinc-200 font-medium">100% offline.</span>
+      <p className="mt-6 text-center text-zinc-300 text-base sm:text-lg max-w-2xl leading-relaxed font-normal animate-fade-up" style={{ animationDelay: '200ms' }}>
+        PDFs, citas, notas, Pomodoro, generación de citas APA/IEEE e IA generativa.
+        Construido con Rust + Tauri, funcionando 100% offline.
       </p>
 
       {/* CTA */}

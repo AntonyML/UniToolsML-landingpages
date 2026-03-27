@@ -16,16 +16,14 @@ export default function TechStack() {
 
       <div className="max-w-5xl mx-auto">
 
-        {/* Platform detector */}
         <PlatformDetector client:load />
 
-        {/* Stack tecnico */}
         <div className="mt-20 text-center mb-10">
-          <span className="inline-block mb-4 text-xs font-mono uppercase tracking-widest text-zinc-500">
-            Stack tecnico
+          <span className="inline-block mb-3 text-xs font-mono uppercase tracking-widest text-zinc-500">
+            Stack técnico
           </span>
-          <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-zinc-100">
-            Construido sobre fundamentos solidos
+          <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-100">
+            Construido sobre fundamentos sólidos
           </h2>
         </div>
 
@@ -40,7 +38,7 @@ export default function TechStack() {
               </div>
               <div className="text-center">
                 <p className="text-xs font-semibold text-zinc-200">{tech.name}</p>
-                <p className="text-[10px] text-zinc-600 mt-0.5 leading-snug">{tech.desc}</p>
+                <p className="text-[10px] text-zinc-500 mt-0.5 leading-snug">{tech.desc}</p>
               </div>
               <div
                 className="w-full h-px rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
@@ -50,7 +48,6 @@ export default function TechStack() {
           ))}
         </div>
 
-        {/* Stats */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
           {[
             { value: '40+',  label: 'Herramientas' },
@@ -59,7 +56,7 @@ export default function TechStack() {
             { value: 'Rust', label: 'Motor de PDF y OCR' },
           ].map((stat) => (
             <div key={stat.label} className="text-center p-4 rounded-xl border border-zinc-800 bg-zinc-900/30">
-              <p className="text-2xl sm:text-3xl font-bold text-gradient-indigo">{stat.value}</p>
+              <p className="text-2xl sm:text-3xl font-bold text-zinc-100">{stat.value}</p>
               <p className="text-xs text-zinc-500 mt-1">{stat.label}</p>
             </div>
           ))}
