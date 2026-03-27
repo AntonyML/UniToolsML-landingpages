@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Menu, X, Zap } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import ThemeSwitcher from '@/components/ThemeSwitcher';
 
 const links = [
   { label: 'Características', href: '/#features' },
@@ -46,7 +47,7 @@ export default function Navbar() {
           {links.map((l) => (
             <li key={l.href}>
               <a
-                  href={l.href}
+                href={l.href}
                 className="px-3 py-2 text-sm text-zinc-400 hover:text-zinc-100 transition-colors rounded-md hover:bg-zinc-800/60"
               >
                 {l.label}
@@ -55,8 +56,9 @@ export default function Navbar() {
           ))}
         </ul>
 
-        {/* CTA */}
-        <div className="hidden md:flex items-center gap-3">
+        {/* CTA + ThemeSwitcher */}
+        <div className="hidden md:flex items-center gap-2">
+          
           <Button variant="glow" size="sm" asChild>
             <a href="/#stack">
               <Zap className="w-3.5 h-3.5" />
@@ -65,14 +67,17 @@ export default function Navbar() {
           </Button>
         </div>
 
-        {/* Mobile burger */}
-        <button
-          className="md:hidden p-2 rounded-md text-zinc-400 hover:text-white hover:bg-zinc-800 transition-colors"
-          onClick={() => setOpen(!open)}
-          aria-label="Toggle menu"
-        >
-          {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-        </button>
+        {/* Mobile: theme + burger */}
+        <div className="md:hidden flex items-center gap-1">
+          <ThemeSwitcher />
+          <button
+            className="p-2 rounded-md text-zinc-400 hover:text-white hover:bg-zinc-800 transition-colors"
+            onClick={() => setOpen(!open)}
+            aria-label="Toggle menu"
+          >
+            {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
+        </div>
       </nav>
 
       {/* Mobile menu */}
@@ -94,7 +99,7 @@ export default function Navbar() {
             </a>
           ))}
           <div className="pt-2 border-t border-zinc-800 mt-1">
-              <Button variant="glow" size="sm" className="w-full" asChild>
+            <Button variant="glow" size="sm" className="w-full" asChild>
               <a href="/#stack">
                 <Zap className="w-3.5 h-3.5" />
                 Beta Access
