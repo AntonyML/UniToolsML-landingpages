@@ -1,0 +1,73 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Navbar from '@/components/Navbar';
+import Newsletter from '@/components/sections/Newsletter';
+import FAQ from '@/components/sections/FAQ';
+import Footer from '@/components/sections/Footer';
+import { Monitor, Cpu, ShieldCheck, ArrowRight } from 'lucide-react';
+---
+
+<BaseLayout
+  title="UniToolsML para macOS — Próximamente"
+  description="Registro para la beta de UniToolsML en macOS. Soporte Apple Silicon (M1/M2/M3) y compatibilidad Intel."
+>
+
+  <Navbar client:load />
+  <main>
+
+    <section class="relative isolate min-h-[70vh] flex flex-col items-center justify-center pt-28 pb-16 px-4 overflow-hidden">
+      <div class="absolute inset-0 -z-10 bg-radial-glow opacity-70" />
+      <div class="absolute inset-0 -z-10 bg-grid-zinc bg-grid opacity-20" />
+      <div aria-hidden class="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[400px] rounded-full bg-slate-500/10 blur-[100px] -z-10" />
+
+      <div class="mb-8 flex items-center gap-2 px-3 py-1.5 rounded-full border border-zinc-700/30 bg-zinc-900/20 text-zinc-200 text-xs font-medium">
+        <Monitor className="w-3.5 h-3.5" />
+        Mac M1 / Intel — Próximamente
+      </div>
+
+      <h1 class="text-center text-4xl sm:text-5xl md:text-6xl font-bold leading-[1.08] tracking-tight max-w-3xl text-gradient mb-4">
+        App nativa para macOS
+      </h1>
+      <p class="text-center text-zinc-400 text-base sm:text-lg max-w-xl leading-relaxed mb-10">
+        Soporte para Apple Silicon (M1/M2/M3) y compatibilidad Intel. Integración con el ecosistema Apple para una experiencia nativa.
+      </p>
+
+      <div class="flex flex-col sm:flex-row items-center gap-3 mb-10">
+        <a
+          href="#newsletter"
+          class="inline-flex items-center gap-2 px-6 py-3 rounded-md bg-zinc-800 text-white text-sm font-medium hover:bg-zinc-700 transition-colors shadow-[0_0_30px_-8px_rgba(15,23,42,0.5)]"
+        >
+          <ArrowRight className="w-4 h-4" />
+          Notificarme sobre la beta de macOS
+        </a>
+        <a href="/" class="text-sm text-zinc-500 hover:text-zinc-300 transition-colors">
+          Ver todas las opciones
+        </a>
+      </div>
+
+      <div class="flex flex-wrap justify-center gap-2">
+        {[
+          { icon: ShieldCheck, label: 'Soporte Apple Silicon (M1/M2/M3)' },
+          { icon: Cpu,         label: 'Optimizada para M1/M2/M3 y Intel' },
+          { icon: Monitor,     label: 'Integración con macOS' },
+        ].map(({ icon: Icon, label }) => (
+          <span class="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-zinc-800 bg-zinc-900/50 text-xs text-zinc-400">
+            <Icon className="w-3.5 h-3.5 text-zinc-500" />
+            {label}
+          </span>
+        ))}
+      </div>
+    </section>
+
+    <section class="py-16 px-4 border-t border-zinc-800">
+      <div class="max-w-2xl mx-auto text-center">
+        <p class="text-xs font-mono uppercase tracking-widest text-zinc-500 mb-6">macOS</p>
+        <p class="text-sm text-zinc-400">La app nativa para macOS está en desarrollo. Regístrate para la lista de espera y te avisaremos cuando la beta esté disponible.</p>
+      </div>
+    </section>
+
+    <Newsletter client:load />
+    <FAQ client:visible />
+  </main>
+  <Footer client:visible />
+</BaseLayout>

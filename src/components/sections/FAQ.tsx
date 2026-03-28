@@ -11,7 +11,7 @@ const faqs = [
   },
   {
     q: 'En que plataformas esta disponible?',
-    a: 'Windows 10/11 está en fases de beta: puedes solicitar acceso registrándote. Android está en desarrollo activo — puedes solicitar acceso a la beta o esperar su publicación pública. macOS y Linux están sin fecha confirmada.',
+    a: 'Windows 10/11 está en fases de beta: puedes solicitar acceso registrándote. Android está en desarrollo activo puedes solicitar acceso a la beta o esperar su publicación pública. macOS y Linux están sin fecha confirmada.',
   },
   {
     q: 'Como funciona el pago? Aceptan SINPE?',
@@ -31,7 +31,7 @@ const faqs = [
   },
   {
     q: 'Las herramientas de IA funcionan sin internet?',
-    a: 'Dependiendo del modelo. Si conectas un modelo local compatible (via LM Studio u Ollama) las herramientas de IA tambien funcionan 100% offline. Si usas una API externa como OpenAI, necesitas conexion solo en ese momento.',
+    a: 'Dependiendo del modelo. Si tiene el plan Premium, puedes utilizar herramientas de IA 100% online. Si conectas un modelo local compatible (via LM Studio u Ollama) las herramientas de IA tambien funcionan 100% offline. Si usas una API externa como OpenAI, necesitas conexion solo en ese momento.',
   },
 ];
 

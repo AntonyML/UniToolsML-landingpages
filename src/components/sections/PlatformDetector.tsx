@@ -36,14 +36,14 @@ const COMING_SOON_CHANNELS: ChannelConfig[] = [
     title: 'macOS',
     subtitle: 'Mac M1 / Intel',
     badge: 'Próximamente',
-    badgeColor: 'zinc',
+    badgeColor: 'emerald',
     items: [
       'App nativa para macOS',
       'Soporte Apple Silicon (M1/M2/M3)',
       'Integración con el ecosistema Apple',
     ],
-    cta: 'Registrarme',
-    ctaHref: '#newsletter',
+    cta: 'Solicitar acceso',
+    ctaHref: '/macos',
   },
   {
     id: 'iphone',
@@ -51,14 +51,14 @@ const COMING_SOON_CHANNELS: ChannelConfig[] = [
     title: 'iPhone / iPad',
     subtitle: 'iOS & iPadOS',
     badge: 'Próximamente',
-    badgeColor: 'zinc',
+    badgeColor: 'emerald',
     items: [
       'App nativa para iOS / iPadOS',
       'Optimizada para iPhone y iPad',
       'Disponible en la App Store cuando esté publicada',
     ],
-    cta: 'Registrarme',
-    ctaHref: '#newsletter',
+    cta: 'Solicitar acceso',
+    ctaHref: '/ios',
   },
 ];
 

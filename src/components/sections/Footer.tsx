@@ -2,11 +2,13 @@ import { Github, Twitter } from 'lucide-react';
 
 const footerLinks = [
   {
-    label: 'Producto',
+    label: 'Navegación',
     links: [
-      { label: 'Caracteristicas', href: '#features' },
-      { label: 'Distribucion', href: '#stack' },
-      { label: 'FAQ', href: '#faq' },
+      { label: 'Inicio', href: '/' },
+      { label: 'Características', href: '/#features' },
+      { label: 'Planes', href: '/#pricing' },
+      { label: 'Distribución', href: '/#stack' },
+      { label: 'FAQ', href: '/#faq' },
     ],
   },
   {

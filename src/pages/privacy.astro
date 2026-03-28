@@ -1,0 +1,118 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Navbar from '@/components/Navbar';
+import Footer from '@/components/sections/Footer';
+---
+
+<BaseLayout title="Política de Privacidad — UniToolsML" description="Política de Privacidad de UniToolsML. App offline para estudiantes universitarios.">
+  <Navbar client:load />
+
+  <main class="max-w-4xl mx-auto px-4 py-20">
+    <h1 class="text-3xl font-bold mb-4">Política de Privacidad</h1>
+    <p class="text-sm text-zinc-400 mb-8">
+      Última actualización: 27 de marzo de 2026
+    </p>
+
+    <div class="prose prose-zinc dark:prose-invert max-w-none text-zinc-300 space-y-8">
+      <p>
+        En <strong>UniToolsML</strong> valoramos y respetamos tu privacidad. 
+        Esta Política explica de forma clara cómo tratamos tus datos.
+      </p>
+
+      <section>
+        <h2 class="text-xl font-semibold mb-3">1. Principios generales</h2>
+        <p>
+          UniToolsML está diseñada bajo el modelo <strong>Local-First y 100% offline</strong>. 
+          La mayoría de las herramientas funcionan completamente en tu dispositivo sin enviar ningún dato a internet.
+        </p>
+        <p class="mt-3">
+          No vendemos tu información, no mostramos anuncios y no compartimos datos personales con terceros con fines publicitarios.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-semibold mb-3">2. Información que recopilamos</h2>
+        
+        <h3 class="text-lg font-medium mt-6 mb-2">Datos que se quedan exclusivamente en tu dispositivo</h3>
+        <ul class="list-disc pl-6 space-y-1">
+          <li>Documentos PDF, notas, flashcards, citas generadas y todo el contenido que crees.</li>
+          <li>Preferencias de tema (modo claro/oscuro y paleta de colores).</li>
+          <li>Progreso de logros, estadísticas locales y uso de herramientas.</li>
+          <li>Base de datos local (SQLite) con toda tu información académica.</li>
+        </ul>
+
+        <h3 class="text-lg font-medium mt-6 mb-2">Datos que se envían solo cuando tú lo eliges</h3>
+        <ul class="list-disc pl-6 space-y-1">
+          <li><strong>Clave API propia:</strong> Si decides usar tu propia clave de OpenAI, Anthropic, Groq u otro proveedor, esta se utiliza para conectar directamente con ese servicio. Nosotros no la almacenamos ni tenemos acceso a ella.</li>
+          <li><strong>Información de pago:</strong> El procesamiento de suscripciones Premium (SINPE Móvil o PayPal) se realiza mediante proveedores externos. No almacenamos datos de tarjetas ni información sensible de pago.</li>
+          <li><strong>Correo electrónico:</strong> Únicamente si te registras en la lista de espera, beta o adquieres un plan Premium.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-semibold mb-3">3. Uso de Inteligencia Artificial</h2>
+        <p>
+          UniToolsML ofrece herramientas de IA generativa de dos formas:
+        </p>
+        <ul class="list-disc pl-6 space-y-2 mt-4">
+          <li>
+            <strong>Modo predeterminado (automático):</strong> Para usuarios con plan Premium, gestionamos automáticamente el modelo más adecuado según la tarea (análisis de PDF, generación de flashcards, mejora de redacción, etc.). No eliges el modelo manualmente.
+          </li>
+          <li>
+            <strong>Usar tu propia clave API:</strong> Puedes configurar tu propia clave API en cualquier momento. En este caso, los documentos y consultas se envían directamente al proveedor que tú elijas.
+          </li>
+        </ul>
+        <p class="mt-4 text-sm text-zinc-400">
+          En ambos casos, te recomendamos no incluir información personal sensible o confidencial en las consultas a IA.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-semibold mb-3">4. Almacenamiento y seguridad</h2>
+        <p>
+          Todos tus archivos y datos locales permanecen exclusivamente en tu dispositivo. 
+          UniToolsML no tiene acceso a ellos.
+        </p>
+        <p class="mt-3">
+          Cuando se utiliza IA:
+        </p>
+        <ul class="list-disc pl-6 space-y-1">
+          <li>En modo automático: los datos se procesan a través de nuestros servidores intermedios de forma temporal.</li>
+          <li>Con tu propia clave: los datos se envían directamente al proveedor del modelo (ej. OpenAI). Te recomendamos revisar su política de privacidad.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-semibold mb-3">5. Tus derechos</h2>
+        <p>
+          Tú tienes control total sobre tus datos:
+        </p>
+        <ul class="list-disc pl-6 space-y-1">
+          <li>Puedes eliminar cualquier archivo, nota o dato en cualquier momento.</li>
+          <li>Puedes resetear completamente la aplicación y borrar todos los datos locales.</li>
+          <li>Puedes solicitar la eliminación de tu correo electrónico de nuestras listas cuando lo desees.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-semibold mb-3">6. Cambios en esta política</h2>
+        <p>
+          Podemos actualizar esta Política de Privacidad cuando sea necesario. 
+          Los cambios importantes se notificarán dentro de la aplicación o por correo electrónico.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-semibold mb-3">7. Contacto</h2>
+        <p>
+          Si tienes dudas sobre esta Política de Privacidad, contáctanos en:
+        </p>
+        <p class="mt-3 font-medium">
+          antonyml2015@gmail.com
+        </p>
+      </section>
+    </div>
+  </main>
+
+  <Footer client:visible />
+</BaseLayout>
