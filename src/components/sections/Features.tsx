@@ -392,7 +392,7 @@ export default function Features() {
   }
 
   return (
-    <section id="features" className="relative py-28 px-4">
+    <section id="features" aria-label="Características de UniToolsML" className="relative py-28 px-4">
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-zinc-800 to-transparent" />
 
       <div className="max-w-5xl mx-auto">
@@ -522,7 +522,7 @@ export default function Features() {
 
                   {/* Heading */}
                   <div>
-                    <h2 className="text-base font-bold tracking-tight" style={{ color: 'var(--text)' }}>Bienvenido a UniToolsML</h2>
+                    <p className="text-base font-bold tracking-tight" style={{ color: 'var(--text)' }}>Bienvenido a UniToolsML</p>
                     <p className="text-xs mt-0.5" style={{ color: 'var(--text-muted)' }}>Rápido, sin rodeos. Hecho para estudiantes.</p>
                   </div>
 

@@ -9,7 +9,7 @@ interface Props {
 
 const {
   title = 'UniToolsML — La Suite del Estudiante Moderno',
-  description = 'Mas de 20 herramientas de procesamiento de PDF, IA generativa y organizacion. Construido con Rust para velocidad extrema, 100% offline.',
+  description = 'Más de 40 herramientas de PDF, citas académicas, IA generativa y organización. Funciona 100% offline. Windows y Android. Hecho en Costa Rica.',
 } = Astro.props;
 const PUBLIC_API_URL = import.meta.env.PUBLIC_API_URL ?? '';
 ---
@@ -20,9 +20,21 @@ const PUBLIC_API_URL = import.meta.env.PUBLIC_API_URL ?? '';
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url} />
+    <meta property="og:image" content="/og-image.png" />
+    <meta property="og:locale" content="es_CR" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="/og-image.png" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href={Astro.url} />
     <meta name="theme-color" content="#09090b" />
     <link rel="icon" href="/icono.ico" />
-    <link rel="apple-touch-icon" href="/icono.ico" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link

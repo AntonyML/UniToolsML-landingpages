@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button';
-import { ArrowRight, ShieldCheck, Terminal } from 'lucide-react';
+import { ArrowRight, ShieldCheck, Terminal, Cpu, Settings2 } from 'lucide-react';
 
 export default function Hero() {
   return (
@@ -14,7 +14,7 @@ export default function Hero() {
       />
 
       {/* Badge */}
-      <div className="mb-8 flex items-center gap-2 px-3 py-1.5 rounded-full border border-indigo-500/30 bg-indigo-500/10 text-indigo-300 text-xs font-medium animate-fade-in shadow-glow-sm">
+      <div role="status" className="mb-8 flex items-center gap-2 px-3 py-1.5 rounded-full border border-indigo-500/30 bg-indigo-500/10 text-indigo-300 text-xs font-medium animate-fade-in shadow-glow-sm">
         <span className="relative flex h-2 w-2">
           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75" />
           <span className="relative inline-flex rounded-full h-2 w-2 bg-indigo-500" />
@@ -72,14 +72,14 @@ export default function Hero() {
         <span className="w-px h-3 bg-zinc-800" />
 
         <span className="flex items-center gap-1.5">
-          <Terminal className="w-3.5 h-3.5 text-indigo-500/70" />
+          <Cpu className="w-3.5 h-3.5 text-indigo-500/70" />
           Funciona sin internet
         </span>
 
         <span className="w-px h-3 bg-zinc-800" />
 
         <span className="flex items-center gap-1.5">
-          <Terminal className="w-3.5 h-3.5 text-indigo-500/70" />
+          <Settings2 className="w-3.5 h-3.5 text-indigo-500/70" />
           Se adapta a tu forma de trabajar
         </span>
       </div>

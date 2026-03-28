@@ -15,7 +15,7 @@ const footerLinks = [
     label: 'Legal',
     links: [
       { label: 'Privacidad', href: '/privacy' },
-      { label: 'Terminos', href: '/terms' },
+      { label: 'Términos', href: '/terms' },
     ],
   },
 ];
@@ -24,7 +24,7 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="relative border-t border-zinc-800">
+    <footer aria-label="Pie de página" className="relative border-t border-zinc-800">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-14">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
           {/* Brand */}
