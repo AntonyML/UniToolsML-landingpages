@@ -12,70 +12,70 @@ import {
 import { cn } from '@/lib/utils';
 
 // ── Types ─────────────────────────────────────────────────────────────────────
-type ThemeId   = 'blue' | 'green' | 'neutral' | 'orange' | 'red' | 'rose' | 'violet' | 'yellow';
+type ThemeId = 'blue' | 'green' | 'neutral' | 'orange' | 'red' | 'rose' | 'violet' | 'yellow';
 type ThemeMode = 'light' | 'dark' | 'system';
 
 interface ThemeDef {
   id: ThemeId; label: string; swatch: string;
   light: Record<string, string>;
-  dark:  Record<string, string>;
+  dark: Record<string, string>;
 }
 
 const THEMES: ThemeDef[] = [
   {
     id: 'blue', label: 'Azul', swatch: 'oklch(0.488 0.243 264.376)',
     light: { '--primary': 'oklch(0.488 0.243 264.376)', '--primary-fg': 'oklch(0.97 0.014 254.604)', '--bg': 'oklch(0.985 0 0)', '--surface': 'oklch(1 0 0)', '--border': 'oklch(0.92 0.004 286.32)', '--text': 'oklch(0.141 0.005 285.823)', '--text-muted': 'oklch(0.552 0.016 285.938)', '--sidebar-bg': 'oklch(0.97 0 0)', '--accent-bg': 'oklch(0.967 0.001 286.375)' },
-    dark:  { '--primary': 'oklch(0.488 0.243 264.376)', '--primary-fg': 'oklch(0.97 0.014 254.604)', '--bg': 'oklch(0.141 0.005 285.823)', '--surface': 'oklch(0.21 0.006 285.885)', '--border': 'oklch(1 0 0 / 10%)', '--text': 'oklch(0.985 0 0)', '--text-muted': 'oklch(0.705 0.015 286.067)', '--sidebar-bg': 'oklch(0.18 0.005 285.823)', '--accent-bg': 'oklch(0.274 0.006 286.033)' },
+    dark: { '--primary': 'oklch(0.488 0.243 264.376)', '--primary-fg': 'oklch(0.97 0.014 254.604)', '--bg': 'oklch(0.141 0.005 285.823)', '--surface': 'oklch(0.21 0.006 285.885)', '--border': 'oklch(1 0 0 / 10%)', '--text': 'oklch(0.985 0 0)', '--text-muted': 'oklch(0.705 0.015 286.067)', '--sidebar-bg': 'oklch(0.18 0.005 285.823)', '--accent-bg': 'oklch(0.274 0.006 286.033)' },
   },
   {
     id: 'violet', label: 'Violeta', swatch: 'oklch(0.541 0.281 293.009)',
     light: { '--primary': 'oklch(0.541 0.281 293.009)', '--primary-fg': 'oklch(0.969 0.016 293.756)', '--bg': 'oklch(0.985 0 0)', '--surface': 'oklch(1 0 0)', '--border': 'oklch(0.92 0.004 286.32)', '--text': 'oklch(0.141 0.005 285.823)', '--text-muted': 'oklch(0.552 0.016 285.938)', '--sidebar-bg': 'oklch(0.97 0 0)', '--accent-bg': 'oklch(0.967 0.001 286.375)' },
-    dark:  { '--primary': 'oklch(0.606 0.25 292.717)', '--primary-fg': 'oklch(0.969 0.016 293.756)', '--bg': 'oklch(0.141 0.005 285.823)', '--surface': 'oklch(0.21 0.006 285.885)', '--border': 'oklch(1 0 0 / 10%)', '--text': 'oklch(0.985 0 0)', '--text-muted': 'oklch(0.705 0.015 286.067)', '--sidebar-bg': 'oklch(0.18 0.005 285.823)', '--accent-bg': 'oklch(0.274 0.006 286.033)' },
+    dark: { '--primary': 'oklch(0.606 0.25 292.717)', '--primary-fg': 'oklch(0.969 0.016 293.756)', '--bg': 'oklch(0.141 0.005 285.823)', '--surface': 'oklch(0.21 0.006 285.885)', '--border': 'oklch(1 0 0 / 10%)', '--text': 'oklch(0.985 0 0)', '--text-muted': 'oklch(0.705 0.015 286.067)', '--sidebar-bg': 'oklch(0.18 0.005 285.823)', '--accent-bg': 'oklch(0.274 0.006 286.033)' },
   },
   {
     id: 'green', label: 'Verde', swatch: 'oklch(0.648 0.2 131.684)',
     light: { '--primary': 'oklch(0.648 0.2 131.684)', '--primary-fg': 'oklch(0.986 0.031 120.757)', '--bg': 'oklch(0.985 0 0)', '--surface': 'oklch(1 0 0)', '--border': 'oklch(0.92 0.004 286.32)', '--text': 'oklch(0.141 0.005 285.823)', '--text-muted': 'oklch(0.552 0.016 285.938)', '--sidebar-bg': 'oklch(0.97 0 0)', '--accent-bg': 'oklch(0.967 0.001 286.375)' },
-    dark:  { '--primary': 'oklch(0.648 0.2 131.684)', '--primary-fg': 'oklch(0.986 0.031 120.757)', '--bg': 'oklch(0.141 0.005 285.823)', '--surface': 'oklch(0.21 0.006 285.885)', '--border': 'oklch(1 0 0 / 10%)', '--text': 'oklch(0.985 0 0)', '--text-muted': 'oklch(0.705 0.015 286.067)', '--sidebar-bg': 'oklch(0.18 0.005 285.823)', '--accent-bg': 'oklch(0.274 0.006 286.033)' },
+    dark: { '--primary': 'oklch(0.648 0.2 131.684)', '--primary-fg': 'oklch(0.986 0.031 120.757)', '--bg': 'oklch(0.141 0.005 285.823)', '--surface': 'oklch(0.21 0.006 285.885)', '--border': 'oklch(1 0 0 / 10%)', '--text': 'oklch(0.985 0 0)', '--text-muted': 'oklch(0.705 0.015 286.067)', '--sidebar-bg': 'oklch(0.18 0.005 285.823)', '--accent-bg': 'oklch(0.274 0.006 286.033)' },
   },
   {
     id: 'orange', label: 'Naranja', swatch: 'oklch(0.646 0.222 41.116)',
     light: { '--primary': 'oklch(0.646 0.222 41.116)', '--primary-fg': 'oklch(0.98 0.016 73.684)', '--bg': 'oklch(0.985 0 0)', '--surface': 'oklch(1 0 0)', '--border': 'oklch(0.92 0.004 286.32)', '--text': 'oklch(0.141 0.005 285.823)', '--text-muted': 'oklch(0.552 0.016 285.938)', '--sidebar-bg': 'oklch(0.97 0 0)', '--accent-bg': 'oklch(0.967 0.001 286.375)' },
-    dark:  { '--primary': 'oklch(0.705 0.213 47.604)', '--primary-fg': 'oklch(0.98 0.016 73.684)', '--bg': 'oklch(0.141 0.005 285.823)', '--surface': 'oklch(0.21 0.006 285.885)', '--border': 'oklch(1 0 0 / 10%)', '--text': 'oklch(0.985 0 0)', '--text-muted': 'oklch(0.705 0.015 286.067)', '--sidebar-bg': 'oklch(0.18 0.005 285.823)', '--accent-bg': 'oklch(0.274 0.006 286.033)' },
+    dark: { '--primary': 'oklch(0.705 0.213 47.604)', '--primary-fg': 'oklch(0.98 0.016 73.684)', '--bg': 'oklch(0.141 0.005 285.823)', '--surface': 'oklch(0.21 0.006 285.885)', '--border': 'oklch(1 0 0 / 10%)', '--text': 'oklch(0.985 0 0)', '--text-muted': 'oklch(0.705 0.015 286.067)', '--sidebar-bg': 'oklch(0.18 0.005 285.823)', '--accent-bg': 'oklch(0.274 0.006 286.033)' },
   },
   {
     id: 'red', label: 'Rojo', swatch: 'oklch(0.577 0.245 27.325)',
     light: { '--primary': 'oklch(0.577 0.245 27.325)', '--primary-fg': 'oklch(0.971 0.013 17.38)', '--bg': 'oklch(0.985 0 0)', '--surface': 'oklch(1 0 0)', '--border': 'oklch(0.92 0.004 286.32)', '--text': 'oklch(0.141 0.005 285.823)', '--text-muted': 'oklch(0.552 0.016 285.938)', '--sidebar-bg': 'oklch(0.97 0 0)', '--accent-bg': 'oklch(0.967 0.001 286.375)' },
-    dark:  { '--primary': 'oklch(0.637 0.237 25.331)', '--primary-fg': 'oklch(0.971 0.013 17.38)', '--bg': 'oklch(0.141 0.005 285.823)', '--surface': 'oklch(0.21 0.006 285.885)', '--border': 'oklch(1 0 0 / 10%)', '--text': 'oklch(0.985 0 0)', '--text-muted': 'oklch(0.705 0.015 286.067)', '--sidebar-bg': 'oklch(0.18 0.005 285.823)', '--accent-bg': 'oklch(0.274 0.006 286.033)' },
+    dark: { '--primary': 'oklch(0.637 0.237 25.331)', '--primary-fg': 'oklch(0.971 0.013 17.38)', '--bg': 'oklch(0.141 0.005 285.823)', '--surface': 'oklch(0.21 0.006 285.885)', '--border': 'oklch(1 0 0 / 10%)', '--text': 'oklch(0.985 0 0)', '--text-muted': 'oklch(0.705 0.015 286.067)', '--sidebar-bg': 'oklch(0.18 0.005 285.823)', '--accent-bg': 'oklch(0.274 0.006 286.033)' },
   },
   {
     id: 'rose', label: 'Rosado', swatch: 'oklch(0.586 0.253 17.585)',
     light: { '--primary': 'oklch(0.586 0.253 17.585)', '--primary-fg': 'oklch(0.969 0.015 12.422)', '--bg': 'oklch(0.985 0 0)', '--surface': 'oklch(1 0 0)', '--border': 'oklch(0.92 0.004 286.32)', '--text': 'oklch(0.141 0.005 285.823)', '--text-muted': 'oklch(0.552 0.016 285.938)', '--sidebar-bg': 'oklch(0.97 0 0)', '--accent-bg': 'oklch(0.967 0.001 286.375)' },
-    dark:  { '--primary': 'oklch(0.645 0.246 16.439)', '--primary-fg': 'oklch(0.969 0.015 12.422)', '--bg': 'oklch(0.141 0.005 285.823)', '--surface': 'oklch(0.21 0.006 285.885)', '--border': 'oklch(1 0 0 / 10%)', '--text': 'oklch(0.985 0 0)', '--text-muted': 'oklch(0.705 0.015 286.067)', '--sidebar-bg': 'oklch(0.18 0.005 285.823)', '--accent-bg': 'oklch(0.274 0.006 286.033)' },
+    dark: { '--primary': 'oklch(0.645 0.246 16.439)', '--primary-fg': 'oklch(0.969 0.015 12.422)', '--bg': 'oklch(0.141 0.005 285.823)', '--surface': 'oklch(0.21 0.006 285.885)', '--border': 'oklch(1 0 0 / 10%)', '--text': 'oklch(0.985 0 0)', '--text-muted': 'oklch(0.705 0.015 286.067)', '--sidebar-bg': 'oklch(0.18 0.005 285.823)', '--accent-bg': 'oklch(0.274 0.006 286.033)' },
   },
   {
     id: 'yellow', label: 'Amarillo', swatch: 'oklch(0.852 0.199 91.936)',
     light: { '--primary': 'oklch(0.852 0.199 91.936)', '--primary-fg': 'oklch(0.421 0.095 57.708)', '--bg': 'oklch(0.985 0 0)', '--surface': 'oklch(1 0 0)', '--border': 'oklch(0.92 0.004 286.32)', '--text': 'oklch(0.141 0.005 285.823)', '--text-muted': 'oklch(0.552 0.016 285.938)', '--sidebar-bg': 'oklch(0.97 0 0)', '--accent-bg': 'oklch(0.967 0.001 286.375)' },
-    dark:  { '--primary': 'oklch(0.795 0.184 86.047)', '--primary-fg': 'oklch(0.421 0.095 57.708)', '--bg': 'oklch(0.141 0.005 285.823)', '--surface': 'oklch(0.21 0.006 285.885)', '--border': 'oklch(1 0 0 / 10%)', '--text': 'oklch(0.985 0 0)', '--text-muted': 'oklch(0.705 0.015 286.067)', '--sidebar-bg': 'oklch(0.18 0.005 285.823)', '--accent-bg': 'oklch(0.274 0.006 286.033)' },
+    dark: { '--primary': 'oklch(0.795 0.184 86.047)', '--primary-fg': 'oklch(0.421 0.095 57.708)', '--bg': 'oklch(0.141 0.005 285.823)', '--surface': 'oklch(0.21 0.006 285.885)', '--border': 'oklch(1 0 0 / 10%)', '--text': 'oklch(0.985 0 0)', '--text-muted': 'oklch(0.705 0.015 286.067)', '--sidebar-bg': 'oklch(0.18 0.005 285.823)', '--accent-bg': 'oklch(0.274 0.006 286.033)' },
   },
   {
     id: 'neutral', label: 'Neutral', swatch: 'oklch(0.205 0 0)',
     light: { '--primary': 'oklch(0.205 0 0)', '--primary-fg': 'oklch(0.985 0 0)', '--bg': 'oklch(0.985 0 0)', '--surface': 'oklch(1 0 0)', '--border': 'oklch(0.922 0 0)', '--text': 'oklch(0.145 0 0)', '--text-muted': 'oklch(0.556 0 0)', '--sidebar-bg': 'oklch(0.97 0 0)', '--accent-bg': 'oklch(0.97 0 0)' },
-    dark:  { '--primary': 'oklch(0.922 0 0)', '--primary-fg': 'oklch(0.205 0 0)', '--bg': 'oklch(0.145 0 0)', '--surface': 'oklch(0.205 0 0)', '--border': 'oklch(1 0 0 / 10%)', '--text': 'oklch(0.985 0 0)', '--text-muted': 'oklch(0.708 0 0)', '--sidebar-bg': 'oklch(0.18 0 0)', '--accent-bg': 'oklch(0.269 0 0)' },
+    dark: { '--primary': 'oklch(0.922 0 0)', '--primary-fg': 'oklch(0.205 0 0)', '--bg': 'oklch(0.145 0 0)', '--surface': 'oklch(0.205 0 0)', '--border': 'oklch(1 0 0 / 10%)', '--text': 'oklch(0.985 0 0)', '--text-muted': 'oklch(0.708 0 0)', '--sidebar-bg': 'oklch(0.18 0 0)', '--accent-bg': 'oklch(0.269 0 0)' },
   },
 ];
 
 const MODES: { id: ThemeMode; label: string; Icon: React.ElementType }[] = [
-  { id: 'light',  label: 'Claro',   Icon: Sun     },
-  { id: 'dark',   label: 'Oscuro',  Icon: Moon    },
+  { id: 'light', label: 'Claro', Icon: Sun },
+  { id: 'dark', label: 'Oscuro', Icon: Moon },
   { id: 'system', label: 'Sistema', Icon: Monitor },
 ];
 
-const LS_THEME     = 'unitools-theme';
-const LS_MODE      = 'unitools-mode';
+const LS_THEME = 'unitools-theme';
+const LS_MODE = 'unitools-mode';
 const LS_TOUR_DONE = 'unitools-tour-completed';
 
 function resolveIsDark(mode: ThemeMode): boolean {
-  if (mode === 'dark')  return true;
+  if (mode === 'dark') return true;
   if (mode === 'light') return false;
   return typeof window !== 'undefined' && window.matchMedia('(prefers-color-scheme: dark)').matches;
 }
@@ -86,30 +86,30 @@ function getVars(themeId: ThemeId, mode: ThemeMode): Record<string, string> {
 }
 
 const NAV_ITEMS = [
-  { label: 'Inicio',        icon: Home,          locked: false },
-  { label: 'Documentos',    icon: FileText,       locked: true  },
-  { label: 'Estudio',       icon: BookOpen,       locked: true  },
-  { label: 'Universidad',   icon: GraduationCap,  locked: true  },
-  { label: 'Investigación', icon: Microscope,     locked: true  },
-  { label: 'Utilidades',    icon: Zap,            locked: true  },
+  { label: 'Inicio', icon: Home, locked: false },
+  { label: 'Documentos', icon: FileText, locked: true },
+  { label: 'Estudio', icon: BookOpen, locked: true },
+  { label: 'Universidad', icon: GraduationCap, locked: true },
+  { label: 'Investigación', icon: Microscope, locked: true },
+  { label: 'Utilidades', icon: Zap, locked: true },
 ];
 
 const FEATURED_TOOLS = [
-  { id: 'merge-pdf',    name: 'Unir PDF',         description: 'Combina múltiples PDFs en uno',  icon: GitMerge,  section: 'Documentos'   },
-  { id: 'notes',        name: 'Notas rápidas',    description: 'Crea y gestiona notas',           icon: Clipboard, section: 'Estudio'      },
-  { id: 'pomodoro',     name: 'Pomodoro',          description: 'Temporizador de estudio',         icon: Timer,     section: 'Estudio'      },
-  { id: 'cite-apa',     name: 'Cita APA',          description: 'Genera citas en formato APA',     icon: Quote,     section: 'Investigación'},
-  { id: 'word-counter', name: 'Contador palabras', description: 'Cuenta palabras y caracteres',    icon: Type,      section: 'Universidad'  },
-  { id: 'flashcards',   name: 'Flashcards',        description: 'Tarjetas de estudio',             icon: Layers,    section: 'Estudio'      },
+  { id: 'merge-pdf', name: 'Unir PDF', description: 'Combina múltiples PDFs en uno', icon: GitMerge, section: 'Documentos' },
+  { id: 'notes', name: 'Notas rápidas', description: 'Crea y gestiona notas', icon: Clipboard, section: 'Estudio' },
+  { id: 'pomodoro', name: 'Pomodoro', description: 'Temporizador de estudio', icon: Timer, section: 'Estudio' },
+  { id: 'cite-apa', name: 'Cita APA', description: 'Genera citas en formato APA', icon: Quote, section: 'Investigación' },
+  { id: 'word-counter', name: 'Contador palabras', description: 'Cuenta palabras y caracteres', icon: Type, section: 'Universidad' },
+  { id: 'flashcards', name: 'Flashcards', description: 'Tarjetas de estudio', icon: Layers, section: 'Estudio' },
 ];
 
 const CATEGORIES = [
-  { key: 'documents',  label: 'Documentos',    icon: FileText,      color: '#0B61D8' },
-  { key: 'study',      label: 'Estudio',       icon: BookOpen,      color: '#2ECC71' },
-  { key: 'university', label: 'Universidad',   icon: GraduationCap, color: '#FF9F1C' },
-  { key: 'research',   label: 'Investigación', icon: Microscope,    color: '#9B59B6' },
-  { key: 'utilities',  label: 'Utilidades',    icon: Zap,           color: '#1ABC9C' },
-  { key: 'ai',         label: 'IA Premium',    icon: Brain,         color: '#7C3AED' },
+  { key: 'documents', label: 'Documentos', icon: FileText, color: '#0B61D8' },
+  { key: 'study', label: 'Estudio', icon: BookOpen, color: '#2ECC71' },
+  { key: 'university', label: 'Universidad', icon: GraduationCap, color: '#FF9F1C' },
+  { key: 'research', label: 'Investigación', icon: Microscope, color: '#9B59B6' },
+  { key: 'utilities', label: 'Utilidades', icon: Zap, color: '#1ABC9C' },
+  { key: 'ai', label: 'IA Premium', icon: Brain, color: '#7C3AED' },
 ];
 
 const PDF_TOOLS = ['Unir', 'Dividir', 'Comprimir', 'Rotar', 'Eliminar págs.', 'Ordenar', 'Imágenes a PDF', 'PDF a imágenes', 'Extraer texto', 'Numerar págs.', 'Organizar', 'OCR'];
@@ -120,7 +120,7 @@ function MockThemeSwitcher({
 }: {
   theme: ThemeId; mode: ThemeMode;
   setTheme: (t: ThemeId) => void;
-  setMode:  (m: ThemeMode) => void;
+  setMode: (m: ThemeMode) => void;
 }) {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -206,14 +206,14 @@ function MockThemeSwitcher({
 
 // ── Features (mock + driver.js tour) ─────────────────────────────────────────
 export default function Features() {
-  const [activeNav,   setActiveNav]   = useState('Inicio');
+  const [activeNav, setActiveNav] = useState('Inicio');
   const [lockedAlert, setLockedAlert] = useState<string | null>(null);
   const [theme, setThemeState] = useState<ThemeId>('blue');
-  const [mode,  setModeState]  = useState<ThemeMode>('dark');
+  const [mode, setModeState] = useState<ThemeMode>('dark');
 
   useEffect(() => {
-    const t = (localStorage.getItem(LS_THEME) as ThemeId)   || 'blue';
-    const m = (localStorage.getItem(LS_MODE)  as ThemeMode) || 'dark';
+    const t = (localStorage.getItem(LS_THEME) as ThemeId) || 'blue';
+    const m = (localStorage.getItem(LS_MODE) as ThemeMode) || 'dark';
     setThemeState(t);
     setModeState(m);
   }, []);
@@ -234,7 +234,7 @@ export default function Features() {
     setModeState(m); localStorage.setItem(LS_MODE, m);
   }, []);
 
-  const vars   = getVars(theme, mode);
+  const vars = getVars(theme, mode);
   const isDark = resolveIsDark(mode);
 
   // ── Driver.js ──────────────────────────────────────────────────────────────
@@ -244,9 +244,15 @@ export default function Features() {
       allowClose: true,
       overlayClickNext: false,
       popoverClass: 'driverjs-unitools',
-      nextBtnText: 'Siguiente →',
-      prevBtnText: '← Atrás',
+
+      // Textos de botones (ya los tienes en español)
+      nextBtnText: 'Siguiente',
+      prevBtnText: 'Atrás',
       doneBtnText: 'Listo',
+
+      // Texto de progreso personalizado (ejemplo: "Paso 1 de 5")
+      progressText: '{{current}} de {{total}}',
+
       steps: [
         {
           element: '#mock-container',
@@ -260,8 +266,60 @@ export default function Features() {
         {
           element: '#theme-switcher',
           popover: {
-            title: '8 temas + modo claro/oscuro',
-            description: 'Personalización completa. Pruébalo ahora mismo — es funcional.',
+            title: 'La app es completamente tuya ✨',
+            description: 'Ese icono en la esquina es el centro de personalización. Ábrelo y la app se transforma al instante — colores, modo, todo.',
+            side: 'left',
+            align: 'start',
+            onNextClick: () => {
+              setMode('light');
+              driverObj.moveNext();
+            },
+          },
+        },
+        {
+          element: '#theme-switcher',
+          popover: {
+            title: 'Modo claro — para cuando hay luz ☀️',
+            description: '¿Estudias de día? Cambiar a modo claro es un clic. La interfaz completa se adapta al instante, sin recargar nada.',
+            side: 'left',
+            align: 'start',
+            onNextClick: () => {
+              setMode('dark');
+              driverObj.moveNext();
+            },
+          },
+        },
+        {
+          element: '#theme-switcher',
+          popover: {
+            title: 'Modo oscuro — para las noches largas 🌙',
+            description: 'Y cuando el sol baja y la sesión de estudio sigue, el modo oscuro cuida tus ojos. Cero fatiga visual.',
+            side: 'left',
+            align: 'start',
+            onNextClick: () => {
+              setTheme('rose');
+              driverObj.moveNext();
+            },
+          },
+        },
+        {
+          element: '#theme-switcher',
+          popover: {
+            title: 'Tema Rosado — porque sí 🌸',
+            description: '8 paletas de color disponibles. ¿No te gusta el azul estándar? Cambia a rosado, violeta, verde... cada uno afecta botones, íconos y acentos.',
+            side: 'left',
+            align: 'start',
+            onNextClick: () => {
+              setTheme('blue');
+              driverObj.moveNext();
+            },
+          },
+        },
+        {
+          element: '#theme-switcher',
+          popover: {
+            title: 'De vuelta al Azul 💙',
+            description: 'Y así de fácil volvemos. La preferencia se guarda automáticamente — la próxima vez que abras la app, tu tema sigue siendo el tuyo.',
             side: 'left',
             align: 'start',
           },
@@ -269,8 +327,8 @@ export default function Features() {
         {
           element: '#nav-home',
           popover: {
-            title: 'Local-First — tus datos no salen de tu PC',
-            description: 'Sin servidores externos, sin telemetría, sin cuenta para lo esencial. Todo ocurre en tu máquina.',
+            title: 'Tus datos no salen de tu PC',
+            description: 'Tus datos nunca salen de tu computadora. Sin servidores, sin cuentas y sin telemetría.',
             side: 'right',
             align: 'start',
           },
@@ -279,25 +337,16 @@ export default function Features() {
           element: '#nav-locked-group',
           popover: {
             title: '6 categorías de herramientas',
-            description: 'Documentos, Estudio, Universidad, Investigación, Utilidades e IA Premium. Cada una con herramientas específicas para tu flujo académico.',
+            description: 'Organizadas para tu vida académica: Documentos, Estudio, Universidad, Investigación, Utilidades e IA Premium.',
             side: 'right',
-            align: 'start',
-          },
-        },
-        {
-          element: '#pdf-tools-section',
-          popover: {
-            title: 'PDF Engine — 12 operaciones con Rust',
-            description: 'Unir, dividir, comprimir, rotar, OCR, extraer texto... Todo offline. Sin Adobe, sin subir archivos a ningún servidor.',
-            side: 'top',
             align: 'start',
           },
         },
         {
           element: '#ai-premium-banner',
           popover: {
-            title: 'IA Generativa — 10+ herramientas',
-            description: 'Analiza PDFs, genera guías de estudio, flashcards automáticas, preguntas de examen, mejora redacción. 7 días gratis de prueba.',
+            title: 'IA Generativa',
+            description: 'Analiza PDFs, crea guías de estudio, flashcards automáticas, preguntas de examen y mejora tu redacción. 7 días de prueba gratis.',
             side: 'bottom',
             align: 'center',
           },
@@ -306,7 +355,7 @@ export default function Features() {
           element: '#featured-tools',
           popover: {
             title: 'Herramientas destacadas',
-            description: 'Pomodoro, Citas APA/IEEE, Notas, Flashcards, Contador de palabras... 40+ herramientas en total, la mayoría completamente gratis.',
+            description: 'Más de 40 herramientas útiles: Pomodoro, citas APA/IEEE, notas, flashcards, contador de palabras y muchas más. La mayoría gratis.',
             side: 'top',
             align: 'center',
           },
@@ -314,8 +363,8 @@ export default function Features() {
         {
           element: '#categories-section',
           popover: {
-            title: 'Organizado por categorías',
-            description: 'Citas académicas en APA e IEEE, flashcards con IA, investigación sin depender de Zotero. Todo en un solo lugar.',
+            title: 'Todo organizado por categorías',
+            description: 'Encuentra fácilmente citas académicas, flashcards con IA, herramientas de investigación y más, todo en un solo lugar.',
             side: 'top',
             align: 'center',
           },
@@ -364,11 +413,13 @@ export default function Features() {
         {/* Tour button + mock wrapper */}
         <div className="relative">
 
-          {/* Botón iniciar tour */}
-          <div className="absolute -top-4 right-0 z-10">
+          {/* Botón iniciar tour (reposicionado para mejor visibilidad) */}
+          {/* Muestra centrado en pantallas pequeñas y alineado a la derecha en pantallas grandes */}
+          <div className="mb-6 flex justify-center sm:justify-end">
             <button
               onClick={startTour}
-              className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-indigo-500/30 bg-indigo-500/10 text-indigo-300 text-xs font-medium hover:bg-indigo-500/20 transition-colors"
+              className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-indigo-500/30 bg-indigo-500/12 text-indigo-100 text-xs font-semibold hover:bg-indigo-500/20 transition-colors shadow-sm"
+              aria-label="Iniciar tour de funciones"
             >
               <PlayCircle className="w-3.5 h-3.5" />
               Ver tour de funciones
@@ -494,29 +545,6 @@ export default function Features() {
                     </div>
                   </button>
 
-                  {/* PDF tools */}
-                  <div id="pdf-tools-section" className="space-y-2">
-                    <p className="text-[10px] font-semibold uppercase tracking-wider" style={{ color: 'var(--text-muted)' }}>
-                      PDF Engine — 12 operaciones
-                    </p>
-                    <div className="grid grid-cols-3 sm:grid-cols-4 gap-1.5">
-                      {PDF_TOOLS.map((tool) => (
-                        <button
-                          key={tool}
-                          onClick={() => setLockedAlert('Documentos')}
-                          className="px-2 py-1.5 rounded-md border text-[10px] font-mono text-center transition-colors"
-                          style={{
-                            background: 'var(--surface)',
-                            borderColor: 'var(--border)',
-                            color: 'var(--text-muted)',
-                          }}
-                        >
-                          {tool}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-
                   {/* Categories */}
                   <div id="categories-section" className="space-y-2">
                     <p className="text-[10px] font-semibold uppercase tracking-wider" style={{ color: 'var(--text-muted)' }}>Categorías</p>
@@ -637,63 +665,115 @@ export default function Features() {
 
       {/* Driver.js custom styles */}
       <style>{`
-        .driver-popover.driverjs-unitools {
-          background-color: #18181b;
-          border: 1px solid #27272a;
-          border-radius: 12px;
-          color: #fafafa;
-          max-width: 300px;
-          padding: 16px;
-        }
-        .driver-popover.driverjs-unitools .driver-popover-title {
-          font-size: 13px;
-          font-weight: 600;
-          color: #fafafa;
-          margin-bottom: 6px;
-        }
-        .driver-popover.driverjs-unitools .driver-popover-description {
-          font-size: 12px;
-          color: #a1a1aa;
-          line-height: 1.55;
-        }
-        .driver-popover.driverjs-unitools .driver-popover-progress-text {
-          font-size: 11px;
-          color: #71717a;
-        }
-        .driver-popover.driverjs-unitools button.driver-popover-next-btn {
-          background: linear-gradient(135deg, #6366f1, #8b5cf6);
-          color: white;
-          border: none;
-          border-radius: 6px;
-          font-size: 12px;
-          padding: 6px 12px;
-          cursor: pointer;
-        }
-        .driver-popover.driverjs-unitools button.driver-popover-prev-btn {
-          background: transparent;
-          color: #a1a1aa;
-          border: 1px solid #3f3f46;
-          border-radius: 6px;
-          font-size: 12px;
-          padding: 6px 12px;
-          cursor: pointer;
-        }
-        .driver-popover.driverjs-unitools button.driver-popover-close-btn {
-          color: #71717a;
-        }
-        .driver-popover.driverjs-unitools .driver-popover-arrow-side-left.driver-popover-arrow {
-          border-left-color: #27272a;
-        }
-        .driver-popover.driverjs-unitools .driver-popover-arrow-side-right.driver-popover-arrow {
-          border-right-color: #27272a;
-        }
-        .driver-popover.driverjs-unitools .driver-popover-arrow-side-top.driver-popover-arrow {
-          border-top-color: #27272a;
-        }
-        .driver-popover.driverjs-unitools .driver-popover-arrow-side-bottom.driver-popover-arrow {
-          border-bottom-color: #27272a;
-        }
-      `}</style>
+  .driver-popover.driverjs-unitools {
+    background-color: #1a1a2e;
+    border: 1px solid #3d3d5c;
+    border-radius: 12px;
+    color: #ffffff;
+    max-width: 320px;
+    padding: 20px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  }
+
+  .driver-popover.driverjs-unitools .driver-popover-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 8px;
+    line-height: 1.4;
+    letter-spacing: -0.2px;
+  }
+
+  .driver-popover.driverjs-unitools .driver-popover-description {
+    font-size: 14px;
+    color: #d1d5db;
+    line-height: 1.6;
+    font-weight: 400;
+  }
+
+  .driver-popover.driverjs-unitools .driver-popover-progress-text {
+    font-size: 12px;
+    color: #9ca3af;
+    font-weight: 500;
+  }
+
+  /* Botón Siguiente (Primary) */
+  .driver-popover.driverjs-unitools button.driver-popover-next-btn {
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    padding: 10px 18px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+    transition: all 0.2s ease;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Botón Anterior (Secondary) */
+  .driver-popover.driverjs-unitools button.driver-popover-prev-btn {
+    background: #ffffff;
+    color: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.2px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    padding: 10px 16px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+    transition: all 0.2s ease;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Hover states */
+  .driver-popover.driverjs-unitools button.driver-popover-next-btn:hover {
+    background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(99, 102, 241, 0.5);
+  }
+
+  .driver-popover.driverjs-unitools button.driver-popover-prev-btn:hover {
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.35);
+    background: rgba(255, 255, 255, 0.12);
+  }
+
+  /* Flechas del popover */
+  .driver-popover.driverjs-unitools .driver-popover-arrow-side-left.driver-popover-arrow {
+    border-left-color: #3d3d5c;
+  }
+  .driver-popover.driverjs-unitools .driver-popover-arrow-side-right.driver-popover-arrow {
+    border-right-color: #3d3d5c;
+  }
+  .driver-popover.driverjs-unitools .driver-popover-arrow-side-top.driver-popover-arrow {
+    border-top-color: #3d3d5c;
+  }
+  .driver-popover.driverjs-unitools .driver-popover-arrow-side-bottom.driver-popover-arrow {
+    border-bottom-color: #3d3d5c;
+  }
+
+  /* Close button */
+  .driver-popover.driverjs-unitools .driver-popover-close-btn {
+    color: #9ca3af;
+    transition: color 0.2s ease;
+  }
+  .driver-popover.driverjs-unitools .driver-popover-close-btn:hover {
+    color: #ffffff;
+  }
+`}</style>
     </section>
   );
 }
