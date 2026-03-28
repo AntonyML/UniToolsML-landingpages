@@ -7,8 +7,10 @@ import { cn } from '@/lib/utils';
 import ThemeSwitcher from '@/components/ThemeSwitcher';
 
 const links = [
+  { label: 'Inicio', href: '/' },
   { label: 'Características', href: '/#features' },
-  { label: 'Stack', href: '/#stack' },
+  { label: 'Planes', href: '/#pricing' },
+  { label: 'Distribución', href: '/#stack' },
   { label: 'FAQ', href: '/#faq' },
 ];
 
@@ -56,19 +58,19 @@ export default function Navbar() {
           ))}
         </ul>
 
-        {/* CTA + ThemeSwitcher */}
+        {/* CTA  */}
         <div className="hidden md:flex items-center gap-2">
-          
           <Button variant="glow" size="sm" asChild>
             <a href="/#stack">
               <Zap className="w-3.5 h-3.5" />
-              Beta Access
+              Obtener Acceso Anticipado
             </a>
           </Button>
         </div>
 
         {/* Mobile: theme + burger */}
         <div className="md:hidden flex items-center gap-1">
+          {/* keep theme visible on mobile */}
           <ThemeSwitcher />
           <button
             className="p-2 rounded-md text-zinc-400 hover:text-white hover:bg-zinc-800 transition-colors"
@@ -98,14 +100,7 @@ export default function Navbar() {
               {l.label}
             </a>
           ))}
-          <div className="pt-2 border-t border-zinc-800 mt-1">
-            <Button variant="glow" size="sm" className="w-full" asChild>
-              <a href="/#stack">
-                <Zap className="w-3.5 h-3.5" />
-                Beta Access
-              </a>
-            </Button>
-          </div>
+      
         </div>
       </div>
     </header>

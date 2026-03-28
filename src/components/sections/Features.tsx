@@ -266,8 +266,8 @@ export default function Features() {
         {
           element: '#theme-switcher',
           popover: {
-            title: 'La app es completamente tuya ✨',
-            description: 'Ese icono en la esquina es el centro de personalización. Ábrelo y la app se transforma al instante — colores, modo, todo.',
+            title: 'Personaliza la apariencia',
+            description: 'Este botón abre el centro de personalización. Desde aquí controlas los colores y el modo de la aplicación.',
             side: 'left',
             align: 'start',
             onNextClick: () => {
@@ -279,8 +279,8 @@ export default function Features() {
         {
           element: '#theme-switcher',
           popover: {
-            title: 'Modo claro — para cuando hay luz ☀️',
-            description: '¿Estudias de día? Cambiar a modo claro es un clic. La interfaz completa se adapta al instante, sin recargar nada.',
+            title: 'Modo claro',
+            description: 'Ideal para estudiar con luz natural. La interfaz completa se adapta con un solo clic.',
             side: 'left',
             align: 'start',
             onNextClick: () => {
@@ -292,8 +292,8 @@ export default function Features() {
         {
           element: '#theme-switcher',
           popover: {
-            title: 'Modo oscuro — para las noches largas 🌙',
-            description: 'Y cuando el sol baja y la sesión de estudio sigue, el modo oscuro cuida tus ojos. Cero fatiga visual.',
+            title: 'Modo oscuro',
+            description: 'Perfecto para sesiones nocturnas. Reduce la fatiga visual y cuida tus ojos durante largas horas de estudio.',
             side: 'left',
             align: 'start',
             onNextClick: () => {
@@ -305,8 +305,8 @@ export default function Features() {
         {
           element: '#theme-switcher',
           popover: {
-            title: 'Tema Rosado — porque sí 🌸',
-            description: '8 paletas de color disponibles. ¿No te gusta el azul estándar? Cambia a rosado, violeta, verde... cada uno afecta botones, íconos y acentos.',
+            title: 'Elige tu color favorito',
+            description: 'Disponibles 8 temas de color. Cambia el acento principal de la aplicación en los que se incluyen botones, íconos y elementos destacados.',
             side: 'left',
             align: 'start',
             onNextClick: () => {
@@ -318,8 +318,8 @@ export default function Features() {
         {
           element: '#theme-switcher',
           popover: {
-            title: 'De vuelta al Azul 💙',
-            description: 'Y así de fácil volvemos. La preferencia se guarda automáticamente — la próxima vez que abras la app, tu tema sigue siendo el tuyo.',
+            title: 'Tu preferencia se guarda',
+            description: 'La próxima vez que abras la app, tu tema y modo favoritos aparecerán automáticamente.',
             side: 'left',
             align: 'start',
           },
