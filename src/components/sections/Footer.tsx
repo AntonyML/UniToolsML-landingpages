@@ -42,7 +42,7 @@ export default function Footer() {
               </span>
             </div>
             <p className="text-sm text-zinc-500 leading-relaxed max-w-xs">
-              Suite de productividad para estudiantes universitarios. Mas de 40 herramientas. Construida con Rust. Funciona offline. Hecha por un Tico 🇨🇷.
+              Un espacio de trabajo diseñado para simplificar tareas digitales. Más de 40 herramientas gratuitas, funcionando incluso sin conexión y adaptadas a tu forma de trabajar. Hecho en Costa Rica 🇨🇷.
             </p>
             <p className="mt-3 text-xs text-zinc-600">
               Pagos: SINPE Movil + PayPal (escritorio y APK)

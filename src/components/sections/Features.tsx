@@ -293,7 +293,7 @@ export default function Features() {
           element: '#theme-switcher',
           popover: {
             title: 'Modo oscuro',
-            description: 'Perfecto para sesiones nocturnas. Reduce la fatiga visual y cuida tus ojos durante largas horas de estudio.',
+            description: 'Perfecto para sesiones nocturnas. Reduce la fatiga visual y cuida tus ojos durante largas horas de trabajo.',
             side: 'left',
             align: 'start',
             onNextClick: () => {
@@ -406,7 +406,7 @@ export default function Features() {
             Todo en una sola app, sin conexión a internet
           </h2>
           <p className="mt-2 text-sm text-zinc-400 max-w-xl mx-auto">
-            Diseñado para flujos de trabajo académicos reales. Las herramientas gratuitas funcionan sin cuenta. La IA generativa requiere tu propia API key o un plan Premium.
+            Diseñado para flujos de trabajo reales. Las herramientas gratuitas funcionan sin cuenta. La IA generativa requiere tu propia API key o un plan Premium.
           </p>
         </div>
 
@@ -523,7 +523,7 @@ export default function Features() {
                   {/* Heading */}
                   <div>
                     <p className="text-base font-bold tracking-tight" style={{ color: 'var(--text)' }}>Bienvenido a UniToolsML</p>
-                    <p className="text-xs mt-0.5" style={{ color: 'var(--text-muted)' }}>Rápido, sin rodeos. Hecho para estudiantes.</p>
+                    <p className="text-xs mt-0.5" style={{ color: 'var(--text-muted)' }}>Rápido, sin rodeos. Hecho para hacer más.</p>
                   </div>
 
                   {/* AI Premium banner */}
