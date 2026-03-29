@@ -6,9 +6,9 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://unitoolsmlbeta.tonyml.com/',
   integrations: [
-    sitemap(),
     react(),
     tailwind({ applyBaseStyles: false }),
+     sitemap(),
   ],
   output: 'static',
 });
