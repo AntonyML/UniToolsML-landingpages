@@ -378,13 +378,8 @@ export default function Features() {
     driverObj.drive();
   }, []);
 
-  // Auto-start si no se ha visto el tour
-  useEffect(() => {
-    const already = localStorage.getItem(LS_TOUR_DONE);
-    if (already) return;
-    const t = setTimeout(startTour, 1200);
-    return () => clearTimeout(t);
-  }, [startTour]);
+  // Auto-start desactivado — causa CLS severo al insertar el popover en el DOM durante la carga
+  // El usuario puede iniciar el tour manualmente con el botón.
 
   function handleNavClick(item: typeof NAV_ITEMS[0]) {
     if (item.locked) setLockedAlert(item.label);

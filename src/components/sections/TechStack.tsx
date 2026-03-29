@@ -29,7 +29,7 @@ export default function TechStack() {
 
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 mb-14">
           {stack.map((tech) => (
-            <div key={tech.name} className="group glass-card rounded-xl border border-zinc-800 p-4 flex flex-col items-center gap-2.5 hover:border-zinc-700 transition-all duration-200 hover:-translate-y-0.5">
+            <div key={tech.name} className="group glass-card rounded-xl border border-zinc-800 p-4 flex flex-col items-center gap-2.5 hover:border-zinc-700 transition-[border-color,transform] duration-200 hover:-translate-y-0.5 will-change-transform">
               <div
                 className="w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold"
                 style={{ background: `${tech.color}20`, color: tech.color, border: `1px solid ${tech.color}30` }}

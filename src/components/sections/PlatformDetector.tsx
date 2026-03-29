@@ -196,7 +196,7 @@ export default function PlatformDetector() {
                 key={opt.value}
                 onClick={() => setSelected(isActive ? null : opt.value)}
                 className={cn(
-                  'flex items-center gap-2 px-4 py-2 rounded-lg border text-sm font-medium transition-all duration-200',
+                  'flex items-center gap-2 px-4 py-2 rounded-lg border text-sm font-medium transition-[border-color,background-color,color] duration-200',
                   isActive
                     ? 'bg-indigo-500/15 border-indigo-500/40 text-indigo-300'
                     : 'bg-zinc-900/50 border-zinc-800 text-zinc-400 hover:border-zinc-700 hover:text-zinc-200'
@@ -217,8 +217,8 @@ export default function PlatformDetector() {
         )}
       </div>
 
-      {/* Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      {/* Grid — min-height reservado para evitar CLS durante hidratación */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 min-h-[320px]">
         {ordered.map((channel) => {
           const Icon = channel.icon;
           const badgeClass = badgeColors[channel.badgeColor];
@@ -228,7 +228,7 @@ export default function PlatformDetector() {
             <div
               key={channel.id}
               className={cn(
-                'relative glass-card rounded-xl border p-5 flex flex-col gap-4 transition-all duration-200',
+                'relative glass-card rounded-xl border p-5 flex flex-col gap-4 transition-[border-color,box-shadow] duration-200',
                 channel.recommended
                   ? 'border-indigo-500/40 shadow-[0_0_30px_-8px_rgba(99,102,241,0.25)]'
                   : 'border-zinc-800 hover:border-zinc-700'
